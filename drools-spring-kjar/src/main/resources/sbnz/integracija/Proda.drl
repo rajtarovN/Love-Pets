@@ -1,0 +1,11 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.model.Pet;
+
+rule "Add pet"
+    when
+        $i: Pet( name == "zlatni retriver" )
+    then
+        $i.setType("pas");
+        update($i);
+end
