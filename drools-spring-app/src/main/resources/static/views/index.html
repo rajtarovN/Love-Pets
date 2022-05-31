@@ -26,7 +26,7 @@
 				let f = event.target;
 				$.get("/dog?id=" + f.id.value + "&name=" + f.name.value ,
 					(data, status)=>{
-						console.log(data);
+						console.log(data.id);
 						console.log(status);
 						$(".jumbotron").append(`<h3>Item klasifikovan kao ${data.type}!</h3>`)
 									   .append(`<p>${JSON.stringify(data)}</p>`);

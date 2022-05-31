@@ -4,8 +4,9 @@ import sbnz.integracija.example.model.Pet;
 
 rule "Add pet"
     when
-        $i: Pet( name == "zlatni retriver" )
+        $i: Pet(  )
     then
-        $i.setType("pas");
-        update($i);
+        //$i.setType("pas");
+        //update($i);
+        System.out.println("a");
 end

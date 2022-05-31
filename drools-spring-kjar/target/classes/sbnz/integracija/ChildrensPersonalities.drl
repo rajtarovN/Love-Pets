@@ -1,0 +1,200 @@
+package sbnz.integracija;
+
+import sbnz.integracija.example.model.Pet;
+import sbnz.integracija.example.model.User;
+import sbnz.integracija.example.model.Helper;
+import sbnz.integracija.example.model.Family;
+
+global Pet perfectPetForChildren;
+
+declare PetProtection
+	petId: long
+	levelProtection: int
+end
+
+declare PetTime
+	petId: long
+	//levelProtection: int
+end
+
+declare PetPrice
+	petId: long
+	//levelProtection: int
+end
+declare PetPlaceForLiving
+	petId: long
+	//levelProtection: int
+end
+
+rule "pet for children"
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $personalities: personalities, $childrenYears : childrenYears, $afraidOf: afraidOf, $alergicOn : alergicOn)//, $liveWith: liveWith )
+		$p: Pet($petId: id, $minYears: minYears, $type : type, $personalities == adoptableOnKids)//,, $notAllowdToLiveWith: notAllowdToLiveWith , $childrenYears > $minYears)
+		$helper: Helper()
+		//PetPrice(petId == $petId )
+		//PetPlaceForLiving(petId == $petId )
+		//PetTime(petId == $petId )
+		Number($value: intValue < 1 ) from accumulate(
+        	String($t:this, this == $type) from $alergicOn,
+        	count($t)
+        )
+         Number($valuee: intValue < 1 ) from accumulate(
+        	String($t:this, this == $type) from $afraidOf,
+        	count($t)
+        )
+         //Number($value3: intValue3 < 1 ) from accumulate(
+        	//String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
+        	//count($t)
+        //)
+	then
+		$helper.setText("2k");
+		System.out.println("Added score for goodInSport. ");
+		drools.getKnowledgeRuntime().setGlobal("perfectPetForChildren", $p);
+		update($helper);
+		update($u);
+end;
+
+rule "physical activity good In Sport"
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $goodInSport: goodInSport )
+		//($goodInSport)
+		$helper: Helper()
+	then
+		$helper.setText("1");
+		System.out.println("Added score for goodInSport. ");
+		$u.setPersonalities($u.getPersonalities() + 1);
+		update($helper);
+		update($u);
+end;
+
+
+rule "physical activity "
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $physiclyActive: physiclyActive )
+		//($physiclyActive )
+		$helper: Helper()
+	then
+		$helper.setText("2");
+		System.out.println("Added score for goodInSport. ");
+		$u.setPersonalities($u.getPersonalities() + 2);
+		update($helper);
+		update($u);
+end;
+
+rule "love reserching "
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $loveReserching: loveReserching )
+		//($loveReserching )
+		$helper: Helper()
+	then
+		$helper.setText("3");
+		System.out.println("Added score for goodInSport. ");
+		$u.setPersonalities($u.getPersonalities() + 1);
+		update($helper);
+		update($u);
+end;
+
+rule "introvert ekstrovert"
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $introvertEkstrovert: introvertEkstrovert )
+		//($introvertEkstrovert )
+		$helper: Helper()
+	then
+		$helper.setText("4");
+		System.out.println("Added score for goodInSport. ");
+		$u.setPersonalities($u.getPersonalities() + 3);
+		update($helper);
+		update($u);
+end;
+
+rule "more time"
+	agenda-group "childrens-personalities"
+	//salience 1
+	no-loop
+	when
+		$u: Family( $moreTime: moreTime )
+		//($moreTime )
+		$helper: Helper()
+	then
+		$helper.setText("5");
+		System.out.println("Added score for goodInSport. "+$moreTime);
+		$u.setPersonalities($u.getPersonalities() + 2);
+		update($helper);
+		update($u);
+end;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rule "Same price" //npr stresan posao
+	agenda-group "childrens-personalities"
+	//salience 1
+	when
+		$u: Family( id == id, $price: price )
+		$pet: Pet($petId : id, price == $price )
+		not ( PetPrice(petId == $petId) )
+		$helper: Helper()
+	then
+		$helper.setText("price");
+		System.out.println("Added score for same level stress: " + $petId);
+		insert(new PetPrice($petId));
+		update($helper);
+end; 
+
+rule "Same time" //npr stresan posao
+	agenda-group "childrens-personalities"
+	//salience 1
+	when
+		$u: Family( id == id, $hoursPerWeek: hoursPerWeek )
+		$pet: Pet($petId : id, hoursPerWeek == $hoursPerWeek )
+		not ( PetTime(petId == $petId) )
+		$helper: Helper()
+	then
+		$helper.setText("timeeeeeeeeeeeee");
+		System.out.println("Added score for same level stress: " + $petId);
+		insert(new PetTime($petId));
+		update($helper);
+end; 
+
+rule "Same place for living" //npr stresan posao
+	agenda-group "childrens-personalities"
+	//salience 1
+	when
+		$u: Family( id == id, $placeForLiving: placeForLiving )
+		$pet: Pet($petId : id, placeForLiving == $placeForLiving )
+		not ( PetPlaceForLiving(petId == $petId) )
+		$helper: Helper()
+	then
+		$helper.setText("place");
+		System.out.println("Added score for same level stress: " + $petId);
+		insert(new PetPlaceForLiving($petId));
+		update($helper);
+end;
+
+rule "Compatibility - same level protection"
+	agenda-group "childrens-personalities"
+	//salience 1
+	when
+		$u: Family( id == id, $levelOfProtection: levelOfProtection )
+		$pet: Pet($petId : id, levelOfProtection == $levelOfProtection )
+		//$compatiblePet: PetCompatibility( petId == $petId )
+		not ( PetProtection(petId == $petId) )
+		$helper: Helper()
+	then
+		$helper.setText("protection");
+		System.out.println("Added score for same level protection compatibility for pet: " + $petId);
+		insert(new PetProtection($petId, 5));
+		update($helper);
+end;

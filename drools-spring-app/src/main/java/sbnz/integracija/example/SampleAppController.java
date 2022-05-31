@@ -38,14 +38,14 @@ public class SampleAppController {
 	@RequestMapping(value = "/dog", method = RequestMethod.GET, produces = "application/json")
 	public Pet getDog(@RequestParam(required = true) String id, @RequestParam(required = true) String name) {
 
-		Pet newPet = new Pet( name);
-
-		log.debug("----------------------------------------------------------------------------------------------------------------------------\n: "
-		+ "********************************************\n==========================================================");
-		log.debug("Item request received for: " + newPet);
-
-		Pet i2 = sampleService.getClassifiedItem(newPet);
-
+//		Pet newPet = new Pet( name);
+//
+//		log.debug("----------------------------------------------------------------------------------------------------------------------------\n: "
+//		+ "********************************************\n==========================================================");
+//		log.debug("Item request received for: " + newPet);
+//
+//		Pet i2 = sampleService.getClassifiedItem(newPet);
+		Pet i2 = this.sampleService.findBestPetChildren((long) 0);
 		return i2;
 	}
 	
