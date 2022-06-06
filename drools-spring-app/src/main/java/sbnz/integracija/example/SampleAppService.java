@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
@@ -120,16 +120,19 @@ public class SampleAppService {
 		//boolean loveMystery, int loveMeditation, int levelOfPatience, int levelOfPersistance, int friendly
     	
     	List<String> notAll = new ArrayList<String>();
-    	notAll.add("a");
+    	//notAll.add("a");
     	List<String> alergic = new ArrayList<String>();
-    	alergic.add("a");
+    	//alergic.add("a");
     	List<String> afraid = new ArrayList<String>();
-    	afraid.add("a");
-		SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, 4, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
-		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,5, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
-		   
+    	//afraid.add("a");
+//		SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, 4, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
+//		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,3, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+//		
+    	SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, true, true, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
+		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,3, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+		
 																				
-		Pet pet2 = new Pet((long)2, "golden fish", "fish", 12, 400, 5, 0,new ArrayList<String>(),5, 4, PlaceForLiving.INSIDE,3, false,3,false, 3,3, 1);
+		Pet pet2 = new Pet((long)2, "golden fish", "fish", 12, 400, 5, 0,new ArrayList<String>(),3, 4, PlaceForLiving.INSIDE,3, false,3,false, 3,3, 1);
 		
 		Helper h = new Helper();
 		
@@ -139,7 +142,7 @@ public class SampleAppService {
 		//kieSession.setGlobal("recomendation", recomedationPets);
 		kieSession.insert(u);
 		kieSession.insert(pet1);
-		kieSession.insert(pet2);
+		//kieSession.insert(pet2);
 		kieSession.insert(h);
 //		this.kieSession.getAgenda().getAgendaGroup("partner-requirements").setFocus();
 //		this.kieSession.fireAllRules();
@@ -148,6 +151,8 @@ public class SampleAppService {
 //		this.kieSession.fireAllRules();
 		
 		kieSession.getAgenda().getAgendaGroup("user-personality").setFocus();
+		kieSession.fireAllRules();
+		kieSession.getAgenda().getAgendaGroup("user-activity").setFocus();
 		kieSession.fireAllRules();
 		
 		kieSession.getAgenda().getAgendaGroup("prepare-perfect-pet").setFocus();
@@ -202,4 +207,73 @@ public class SampleAppService {
 		return pet;
 	
 	}
+    
+    
+    public Pet bek() {
+    	List<String> notAll = new ArrayList<String>();
+    	//notAll.add("a");
+    	List<String> alergic = new ArrayList<String>();
+    	//alergic.add("dog");
+    	List<String> afraid = new ArrayList<String>();
+    	//afraid.add("a");
+    	List<String> liveWith = new ArrayList<String>();
+    	//liveWith.add("dog");
+    	
+    	KieSession ksession = kieContainer.newKieSession();
+        SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, true, true, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
+		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,3, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+		
+		Helper h = new Helper();
+		
+        ksession.insert( u );
+        ksession.insert( h );
+        ksession.insert(pet1);
+        
+        ksession.insert( "go1" );
+        ksession.fireAllRules();
+        System.out.println("---");
+        
+        Pet pet = (Pet) ksession.getGlobal("perfectPetForChildren");
+		System.out.println(h.getText());
+		System.out.println(pet);
+		return pet;
+
+    }
+    
+    public Pet bek2() {
+    	List<String> notAll = new ArrayList<String>();
+    	//notAll.add("a");
+    	List<String> alergic = new ArrayList<String>();
+    	alergic.add("dog");
+    	List<String> afraid = new ArrayList<String>();
+    	//afraid.add("a");
+    	List<String> liveWith = new ArrayList<String>();
+    	//liveWith.add("dog");
+    	
+    	KieSession ksession = kieContainer.newKieSession();
+    	Family f = new Family((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, alergic, 400, 12,PlaceForLiving.INSIDE_OUTSIDE, afraid,
+				liveWith,3, true,true,true,true,true,true,0);
+		
+		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 9, 3,new ArrayList<String>()  ,5, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+		   
+			
+		Helper h = new Helper();
+		
+        ksession.insert( f );
+        ksession.insert( h );
+        ksession.insert(pet1);
+        
+        ksession.getAgenda().getAgendaGroup("childrens-personalities").setFocus();
+		ksession.fireAllRules();
+        
+        ksession.insert( "go1" );
+        ksession.fireAllRules();
+        System.out.println("---");
+        
+        Pet pet = (Pet) ksession.getGlobal("perfectPetForChildren");
+		System.out.println(h.getText());
+		System.out.println(pet);
+		return pet;
+
+    }
 }

@@ -1,5 +1,6 @@
 package sbnz.integracija.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sbnz.integracija.example.enums.PlaceForLiving;
@@ -25,6 +26,8 @@ public class Family extends User{
 	private boolean sthNew;
 	
 	private int personalities; //kao stepen osobina
+	
+	private List<Integer> personalPoints;
 
 	public int getChildrenYears() {
 		return childrenYears;
@@ -97,6 +100,14 @@ public class Family extends User{
 		this.personalities = personalities;
 	}
 
+	public List<Integer> getPersonalPoints() {
+		return personalPoints;
+	}
+
+	public void setPersonalPoints(List<Integer> personalPoints) {
+		this.personalPoints = personalPoints;
+	}
+
 	public Family(Long id, String firstName, String lastName, String email, String password, Boolean active,
 			int levelOfProtection, List<String> alergicOn, float price, int time, PlaceForLiving place,
 			List<String> afraidof, List<String> liveWith, int childrenYears, boolean goodInSport,
@@ -112,6 +123,7 @@ public class Family extends User{
 		this.introvertEkstrovert = introvertEkstrovert;
 		this.sthNew = sthNew;
 		this.personalities = personalities;
+		this.personalPoints = new ArrayList<Integer>();
 	}
 
 //	public Family(Long id, String firstName, String lastName, String email, String password, Boolean active,

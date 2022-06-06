@@ -7,7 +7,7 @@ import sbnz.integracija.example.enums.PlaceForLiving;
 
 public class Pet {
 
-
+	//todo dodati mesecno troskovi za hranu ili kao dodatni troskovi tipa akvarijum, ili kao neku napomenu pri odabiru ljubimca
 
 	private Long id;
     private String name;
@@ -26,7 +26,7 @@ public class Pet {
     
     private List<String> notAllowdToLiveWith;
 
-    private int levelOfActivity;
+    private int levelOfActivity; //ovako ovo neka ide do 3, 3 je voli trc i setnju, 2 setnja, 1 nista 
 
     private int degreeOfMolting; //stepen linjanja
     

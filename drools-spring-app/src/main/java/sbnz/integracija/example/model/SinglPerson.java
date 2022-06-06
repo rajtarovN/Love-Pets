@@ -5,8 +5,8 @@ import java.util.List;
 import sbnz.integracija.example.enums.PlaceForLiving;
 
 public class SinglPerson extends User{
-	private int loveRunning;
-	private int loveWalking;
+	private boolean loveRunning;
+	private boolean loveWalking;
 	private boolean extroversion;
 	private boolean introversion;
 	private int levelOfStressOnJob;
@@ -15,16 +15,16 @@ public class SinglPerson extends User{
 	private int levelOfPatience;
 	private int levelOfPersistance; //stepen upornosti
     private int friendly;
-	public int getLoveRunning() {
+	public boolean isLoveRunning() {
 		return loveRunning;
 	}
-	public void setLoveRunning(int loveRunning) {
+	public void setLoveRunning(boolean loveRunning) {
 		this.loveRunning = loveRunning;
 	}
-	public int getLoveWalking() {
+	public boolean isLoveWalking() {
 		return loveWalking;
 	}
-	public void setLoveWalking(int loveWalking) {
+	public void setLoveWalking(boolean loveWalking) {
 		this.loveWalking = loveWalking;
 	}
 	
@@ -78,7 +78,7 @@ public class SinglPerson extends User{
 		this.friendly = friendly;
 	}
 	public SinglPerson(Long id, String firstName, String lastName, String email, String password, Boolean active,
-			int loveRunning, int loveWalking, boolean levelOfExtroversion, int levelOfStressOnJob,
+			boolean loveRunning, boolean loveWalking, boolean levelOfExtroversion, int levelOfStressOnJob,
 			boolean loveMystery, int loveMeditation, int levelOfPatience, int levelOfPersistance, int friendly, int levelOfProtection,
 			List<String> alergicOn, float price, int time, PlaceForLiving place, List<String> afraidOf, List<String>liveWith) {
 		super(id, firstName, lastName, email, password, active, levelOfProtection, alergicOn, price, time, place, afraidOf, liveWith);

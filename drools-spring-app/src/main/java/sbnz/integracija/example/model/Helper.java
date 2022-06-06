@@ -12,6 +12,11 @@ public class Helper {
 		System.out.println("setovan je text:"+text);
 		this.text = text;
 	}
+	public boolean setText2(String text) {
+		System.out.println("setovan je text:"+text);
+		this.text = text;
+		return true;
+	}
 	
 	
 }
