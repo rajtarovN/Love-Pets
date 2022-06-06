@@ -53,8 +53,8 @@ rule "pet for children"
 	//salience 1
 	no-loop
 	when
-		$u: Family($id : id, $personalities: personalities, $childrenYears : childrenYears,$personalPoints: personalPoints, $afraidOf: afraidOf, $alergicOn : alergicOn)//, $liveWith: liveWith )
-		$p: Pet($petId: id, $minYears: minYears, $type : type, $adoptableOnKids: adoptableOnKids)//,, $notAllowdToLiveWith: notAllowdToLiveWith , $childrenYears > $minYears)
+		$u: Family($id : id, $personalities: personalities, $childrenYears : childrenYears,$personalPoints: personalPoints, $afraidOf: afraidOf, $alergicOn : alergicOn, $liveWith: liveWith )
+		$p: Pet($petId: id, $minYears: minYears, $type : type, $adoptableOnKids: adoptableOnKids, $notAllowdToLiveWith: notAllowdToLiveWith)//, $childrenYears > $minYears)
 		$helper: Helper($text: text, text != "2k")
 		PersonGoodInSport(id == $id)
 		PersonPhysiclyActive(id == $id)
@@ -63,7 +63,7 @@ rule "pet for children"
 		PersonMoreTime(id == $id)
 		PetPrice(petId == $petId )
 		PetPlaceForLiving(petId == $petId )
-		PetTime(petId == $petId )
+		//PetTime(petId == $petId )
 		Number($value: intValue < 1 ) from accumulate(
         	String($t:this, this == $type) from $alergicOn,
         	count($t)
@@ -73,12 +73,12 @@ rule "pet for children"
         	count($t)
         )
         Number( $total: intValue == $adoptableOnKids) from accumulate(
-        	Integer($p:this) from $personalPoints,
-       		sum($p)
+        	Integer($t:this) from $personalPoints,
+       		sum($t)
     	)
-         //Number($value3: intValue3 < 1 ) from accumulate(
-        	//String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
-        	//count($t)
+        // Number($value3: intValue < 1 ) from accumulate(
+        //	String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
+        //	count($t)
         //)
 	then
 		$helper.setText("2k");

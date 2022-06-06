@@ -61,53 +61,7 @@ public class SampleAppService {
 		return i;
 	}
 	
-	public Pet findBestPet(Long id) {
-		
-		//Optional<sbnz.integracija.example.model.User> user = userRepository.findById(id);
-		
-		User u = new User();
-		u.setLevelOfProtection(5);
-		u.setId((long) 0);
-		
-		
-		Pet pet1= new Pet();
-		pet1.setId((long)0);
-		pet1.setLevelOfProtection(1);
-		
-		Pet pet2= new Pet();
-		pet2.setId((long)1);
-		pet2.setLevelOfProtection(5);
-		pet2.setName("dzeki");
-		
-		Helper h = new Helper();
-		
-		KieSession kieSession = kieContainer.newKieSession();
-		//kieSession.setGlobal("id", u.getId());
-		kieSession.insert(u);
-		kieSession.insert(pet1);
-		//kieSession.insert(pet2);
-		kieSession.insert(h);
-//		this.kieSession.getAgenda().getAgendaGroup("partner-requirements").setFocus();
-//		this.kieSession.fireAllRules();
-//		
-//		this.kieSession.getAgenda().getAgendaGroup("partner-age").setFocus();
-//		this.kieSession.fireAllRules();
-		
-		kieSession.getAgenda().getAgendaGroup("user-personality").setFocus();
-		kieSession.fireAllRules();
-		
-		kieSession.getAgenda().getAgendaGroup("prepare-perfect-pet").setFocus();
-		kieSession.fireAllRules();
-		
-		kieSession.getAgenda().getAgendaGroup("perfect-pet").setFocus();
-		kieSession.fireAllRules();
-		Pet pet = (Pet) kieSession.getGlobal("perfectPet");
-		System.out.println(h.getText());
-		System.out.println(pet);
-		return pet;
-	}
-	
-    public Pet findBestPet1(Long id) {
+    public Pet findBestPet(Long id) {
 		
 		//Optional<sbnz.integracija.example.model.User> user = userRepository.findById(id);
 		

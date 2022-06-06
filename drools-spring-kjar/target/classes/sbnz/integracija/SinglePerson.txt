@@ -70,8 +70,8 @@ rule "Perfect pet"
 	agenda-group "perfect-pet"
 	when
 		//PetCompatibility( $petId : petId ),  ovo dodje kasnije
-		$u: SinglPerson( $id : id, $alergicOn : alergicOn, $afraidOf: afraidOf)
-		$perfectPet: Pet($petId: id, $type : type )
+		$u: SinglPerson( $id : id, $alergicOn : alergicOn, $afraidOf: afraidOf, $liveWith: liveWith)
+		$perfectPet: Pet($petId: id, $type : type, $notAllowdToLiveWith: notAllowdToLiveWith )
 		PetProtection(petId == $petId, $levelProtection : levelProtection )
 		PetStress(petId == $petId )
 		PetMistery(petId == $petId )
@@ -81,7 +81,7 @@ rule "Perfect pet"
 		PetPatience(petId == $petId )
 		PetPersistance(petId == $petId )
 		
-		//PetActivity(petId == $petId )
+		PetActivity(petId == $petId )
 		
 		Number($value: intValue < 1 ) from accumulate(
         	String($t:this, this == $type) from $alergicOn,
@@ -89,6 +89,10 @@ rule "Perfect pet"
         )
          Number($valuee: intValue < 1 ) from accumulate(
         	String($t:this, this == $type) from $afraidOf,
+        	count($t)
+        )
+        Number($value3: intValue < 1 ) from accumulate(
+        	String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
         	count($t)
         )
        
