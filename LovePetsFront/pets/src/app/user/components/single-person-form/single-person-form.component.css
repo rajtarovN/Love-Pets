@@ -1,0 +1,79 @@
+.back {
+    background-image: url('src/assets/images/download.png');
+  }
+  mat-toolbar {
+      background: #303030;
+      color: white;
+    }
+    
+    mat-sidenav {
+      margin: 16px;
+      width: 300px;
+      border-right: none;
+      background: #424242;
+      color: white;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .content {
+      border-radius: 10px;
+      margin: 16px;
+      margin-left: 32px;
+    
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    
+      color: lightgray;
+    }
+    
+    mat-sidenav-container {
+      height: calc(100vh - 65px);
+      align-items: start;
+    }
+    
+    .row {
+      width: 70%;
+    }
+    
+    mat-form-field {
+      width: 70%;
+      height: 2%;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      background-color: #f2f0eb;
+    }
+    
+    mat-divider {
+      margin-top: 16px;
+      margin-bottom: 16px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .span {
+      margin: auto;
+      font-family: Times, "Times New Roman", Georgia, serif;
+      font-size: 2rem;
+    }
+    
+    .custom-scroll-bar::-webkit-scrollbar {
+      width: 5px;
+    }
+    
+    .custom-scroll-bar::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.26);
+    }
+    
+    mat-card {
+      background-color: white;
+      box-shadow: none !important;
+    }
+    mat-checkbox {
+      margin: 5px;
+    }
+    
+    .mat-dialog-content-height{
+      max-height: none;
+    }
