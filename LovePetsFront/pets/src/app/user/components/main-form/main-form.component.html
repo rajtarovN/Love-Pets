@@ -1,93 +1,91 @@
-<div  class="back"> <p>
+<div class="back">
+  <p>
     <mat-toolbar>
       <span>My Application</span>
     </mat-toolbar>
   </p>
-<mat-card class="card-position back">
- 
-    <mat-card-header>
-    </mat-card-header>
+  <mat-card class="card-position back">
+    <mat-card-header> </mat-card-header>
     <mat-card-content>
       <!--  -->
-      <form  [formGroup]="firstPartQuestions">
-       
-            <mat-label class = "labelColor">Activness</mat-label>
-            <mat-form-field appearance="fill">
+      <div class="divForm">
+        <form [formGroup]="firstPartQuestions">
+          <mat-label class="labelColor">Activness</mat-label>
+          <mat-form-field appearance="fill">
             <select matNativeControl required>
               <option value="active">Active</option>
               <option value="notActive">Not so active</option>
             </select>
-        </mat-form-field>
-  
-        <mat-form-field id="levelOfProtection" appearance="standard">
-          <input
-            matInput
-            type="number"
-            formControlName="levelOfProtection"
-            id="levelOfProtection"
-            required
-            [(ngModel)]="this.levelOfProtection"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="hoursPerWeek" appearance="standard">
-          <input
-            matInput
-            type="number"
-            formControlName="hoursPerWeek"
-            id="hoursPerWeek"
-            required
-            [(ngModel)]="this.hoursPerWeek"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="price" appearance="standard">
-          <input
-            matInput
-            type="number"
-            id="price"
-            formControlName="price"
-            required
-            [(ngModel)]="this.price"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="placeForLiving" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="placeForLiving"
-            formControlName="placeForLiving"
-            required
-            [(ngModel)]="this.placeForLiving"
-          />
-        </mat-form-field>
+          </mat-form-field>
 
-        <mat-label class = "labelColor">Place for pet living</mat-label>
-            <mat-form-field appearance="fill">
+          <mat-label class="labelColor">Input levefrom 0-5 </mat-label>
+          <mat-form-field id="levelOfProtection" appearance="standard">
+            <input
+              matInput
+              type="number"
+              formControlName="levelOfProtection"
+              id="levelOfProtection"
+              required
+              [(ngModel)]="this.levelOfProtection"
+            />
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Input how much hours per week you can spend on pet:
+          </mat-label>
+          <mat-form-field id="hoursPerWeek" appearance="standard">
+            <input
+              matInput
+              type="number"
+              formControlName="hoursPerWeek"
+              id="hoursPerWeek"
+              required
+              [(ngModel)]="this.hoursPerWeek"
+            />
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Input price which you can spend for bying pet:
+          </mat-label>
+          <mat-form-field id="price" appearance="standard">
+            <input
+              matInput
+              type="number"
+              id="price"
+              formControlName="price"
+              required
+              [(ngModel)]="this.price"
+            />
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Select where would your pet live:
+          </mat-label>
+          <mat-form-field appearance="fill">
             <select matNativeControl required>
-              <option value="home">Inside home</option>
-              <option value="outside">Outside</option>
-              <option value="outsideInside">It can live outside and inside</option>
+              <option value="inside">Inside of house (or flat)</option>
+              <option value="outside">In the garden</option>
+              <option value="insideOutside">
+                In the garden or inside of house (flat)
+              </option>
             </select>
-        </mat-form-field>
-  
-      </form>
-  
-      <mat-action-list>
-        <button
-          mat-flat-button
-          color="accent"
-          type="submit"
-          class="submit-button"
-          (click)="submit()"
-          [disabled]="firstPartQuestions.invalid"
+          </mat-form-field>
+        </form>
+
+        <mat-action-list>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            class="submit-button"
+            (click)="submit()"
+            [disabled]="firstPartQuestions.invalid"
           >
-        <!-- [disabled]="firstPartQuestions.invalid" -->
-          Next
-        </button>
-      </mat-action-list>
+            <!-- [disabled]="firstPartQuestions.invalid" -->
+            Next
+          </button>
+        </mat-action-list>
+      </div>
     </mat-card-content>
   </mat-card>
-  
 </div>

@@ -1,0 +1,111 @@
+<mat-card>
+  <mat-card-content>
+    <h3>{{ pet.name }}</h3>
+
+    <p><mat-icon>pets</mat-icon>Type: {{ pet.type }}</p>
+
+    <p>
+      <mat-icon>pets</mat-icon>Pet needs {{ pet.hoursPerWeek }} hours per week
+    </p>
+
+    <p><mat-icon>pets</mat-icon>Price: {{ pet.price }}</p>
+
+    <p>
+      <mat-icon>pets</mat-icon>Level of adoptable on kids:
+      {{ pet.adoptableOnKids }} /10
+    </p>
+
+    <p>
+      <mat-icon>pets</mat-icon>Children needs to have {{ pet.minYears }} years
+      minimum
+    </p>
+    <p>
+      <mat-icon>pets</mat-icon>Level of activity of pet:
+      {{ pet.levelOfActivity }}
+    </p>
+    <p>
+      <mat-icon>pets</mat-icon>Degree of pet molting: {{ pet.degreeOfMolting }}
+    </p>
+    <p><mat-icon>pets</mat-icon>Pat can live: {{ pet.placeForLiving }}</p>
+
+    <p>
+      <mat-icon>pets</mat-icon>Level of protection of pet:
+      {{ pet.levelOfProtection }}/5
+    </p>
+
+    <div>
+      <table>
+        <tr>
+          <td>
+            <mat-icon>pets</mat-icon>
+            Pet is for extroverts:
+          </td>
+          <td>
+            <div>
+              <div *ngIf="pet.extroversion">
+                <mat-icon>check_box</mat-icon>
+              </div>
+              <div *ngIf="!pet.extroversion">
+                <mat-icon>indeterminate_check_box</mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td><mat-icon>pets</mat-icon>Pet is for introverts:</td>
+          <td>
+            <div *ngIf="!pet.extroversion"><mat-icon>check_box</mat-icon></div>
+            <div *ngIf="pet.extroversion">
+              <mat-icon>indeterminate_check_box</mat-icon>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <mat-icon>pets</mat-icon>Pet is for person whos job have stress level:{{
+        pet.levelOfStressOnJob
+      }}
+    </p>
+
+    <div>
+      <table>
+        <tr>
+          <td><mat-icon>pets</mat-icon>Pet is for person who love mystery:</td>
+          <td>
+            <div *ngIf="pet.loveMystery"><mat-icon>check_box</mat-icon></div>
+            <div *ngIf="!pet.loveMystery">
+              <mat-icon>indeterminate_check_box</mat-icon>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <table>
+        <tr>
+          <td>
+            <mat-icon>pets</mat-icon>Pet is for person who love meditation:
+          </td>
+          <td>
+            <div *ngIf="pet.loveMeditation"><mat-icon>check_box</mat-icon></div>
+            <div *ngIf="!pet.loveMeditation">
+              <mat-icon>indeterminate_check_box</mat-icon>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <p>Pet is for persone with {{ pet.levelOfPatience }} level of patience.</p>
+    <p>
+      Pet is for persone with {{ pet.levelOfPersistance }} level of persistance.
+    </p>
+  </mat-card-content>
+</mat-card>

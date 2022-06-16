@@ -1,82 +1,73 @@
-<mat-card class="card-position">
-    <mat-card-header>
-      <mat-card-title>First part of questions</mat-card-title>
-    </mat-card-header>
+<div class="back">
+  <p>
+    <mat-toolbar>
+      <span>My Application</span>
+    </mat-toolbar>
+  </p>
+  <mat-card class="card-position back">
+    <mat-card-header> </mat-card-header>
     <mat-card-content>
       <!--  -->
-      <form  [formGroup]="secondPartQuestions">
-        <mat-form-field appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="loveRunning"
-            id="loveRunning"
-            required
-            [(ngModel)]="this.loveRunning"
-      
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="loveWalking" appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="loveWalking"
-            id="loveWalking"
-            required
-            [(ngModel)]="this.loveWalking"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="extroversion" appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="extroversion"
-            id="extroversion"
-            required
-            [(ngModel)]="this.extroversion"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="introversion" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="introversion"
-            formControlName="introversion"
-            required
-            [(ngModel)]="this.introversion"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="levelOfStressOnJob" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="levelOfStressOnJob"
-            formControlName="levelOfStressOnJob"
-            required
-            [(ngModel)]="this.levelOfStressOnJob"
-          />
-        </mat-form-field>
+      <div class="divForm">
+        <form [formGroup]="secondPartQuestions">
+          <mat-label class="labelColor">Select do you love running: </mat-label
+          ><br />
+          <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="loveRunning">Love running</option>
+              <option value="notLoveRuning">Don't love runinig</option>
+            </select>
+          </mat-form-field>
 
-        
-        <mat-form-field id="loveMystery" appearance="standard">
+          <mat-label class="labelColor">Select do you love walking: </mat-label
+          ><br />
+          <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="loveWalking">Love walking</option>
+              <option value="notLoveWalking">Don't love walking</option>
+            </select>
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Select your type of personality: </mat-label
+          ><br />
+          <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="extrovert">Extrovert</option>
+              <option value="introvert">Introvert</option>
+            </select>
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Input level of stress of your job from 0-5: </mat-label
+          ><br />
+          <mat-form-field id="levelOfStressOnJob" appearance="standard">
             <input
               matInput
-              type="text"
-              id="loveMystery"
-              formControlName="loveMystery"
+              type="number"
+              id="levelOfStressOnJob"
+              formControlName="levelOfStressOnJob"
               required
-              [(ngModel)]="this.loveMystery"
+              [(ngModel)]="this.levelOfStressOnJob"
             />
           </mat-form-field>
 
-        <mat-form-field id="loveMeditation" appearance="standard">
+          <mat-label class="labelColor">Select do you love mystery: </mat-label
+          ><br />
+          <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="yess">Yess</option>
+              <option value="no">No</option>
+            </select>
+          </mat-form-field>
+
+          <mat-label class="labelColor"
+            >Input how much do you love meditation from 0-5: </mat-label
+          ><br />
+          <mat-form-field id="loveMeditation" appearance="standard">
             <input
               matInput
-              type="text"
+              type="number"
               id="loveMeditation"
               formControlName="loveMeditation"
               required
@@ -84,10 +75,13 @@
             />
           </mat-form-field>
 
+          <mat-label class="labelColor"
+            >Input your level of patience from 0-5: </mat-label
+          ><br />
           <mat-form-field id="levelOfPatience" appearance="standard">
             <input
               matInput
-              type="text"
+              type="number"
               id="levelOfPatience"
               formControlName="levelOfPatience"
               required
@@ -95,10 +89,13 @@
             />
           </mat-form-field>
 
+          <mat-label class="labelColor"
+            >Input your level of persistence from 0-5: </mat-label
+          ><br />
           <mat-form-field id="levelOfPersistance" appearance="standard">
             <input
               matInput
-              type="text"
+              type="number"
               id="levelOfPersistance"
               formControlName="levelOfPersistance"
               required
@@ -106,31 +103,34 @@
             />
           </mat-form-field>
 
+          <mat-label class="labelColor"
+            >Input your level of friendlyness from 0-5: </mat-label
+          ><br />
           <mat-form-field id="friendly" appearance="standard">
             <input
               matInput
-              type="text"
+              type="number"
               id="friendly"
               formControlName="friendly"
               required
               [(ngModel)]="this.friendly"
             />
           </mat-form-field>
-  
-      </form>
-  
-      <mat-action-list>
-        <button
-          mat-flat-button
-          color="accent"
-          type="submit"
-          class="submit-button"
-          (click)="submit()"
+        </form>
+
+        <mat-action-list>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            class="submit-button"
+            (click)="submit()"
           >
-        <!-- [disabled]="firstPartQuestions.invalid" -->
-          Next
-        </button>
-      </mat-action-list>
+            <!-- [disabled]="firstPartQuestions.invalid" -->
+            Next
+          </button>
+        </mat-action-list>
+      </div>
     </mat-card-content>
   </mat-card>
-  
+</div>

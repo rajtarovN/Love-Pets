@@ -1,0 +1,55 @@
+<div id="container-div" class="back">
+  <div>
+    <form [formGroup]="secondPartQuestions">
+      <div class="divForm">
+        <mat-label class="labelColor">Input name: </mat-label><br />
+        <mat-form-field id="name" appearance="standard">
+          <input
+            matInput
+            type="text"
+            id="name"
+            formControlName="name"
+            required
+            [(ngModel)]="this.name"
+          />
+        </mat-form-field>
+
+        <mat-label class="labelColor">Input last name: </mat-label><br />
+        <mat-form-field id="lastName" appearance="standard">
+          <input
+            matInput
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            required
+            [(ngModel)]="this.lastName"
+          />
+        </mat-form-field>
+
+        <mat-label class="labelColor">Input email: </mat-label><br />
+        <mat-form-field id="email" appearance="standard">
+          <input
+            matInput
+            type="text"
+            id="email"
+            formControlName="email"
+            required
+            [(ngModel)]="this.email"
+          />
+        </mat-form-field>
+
+        <mat-label class="labelColor">Input password: </mat-label><br />
+        <mat-form-field id="password" appearance="standard">
+          <input
+            matInput
+            type="password"
+            id="password"
+            formControlName="password"
+            required
+            [(ngModel)]="this.password"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

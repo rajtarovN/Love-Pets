@@ -125,3 +125,7 @@ mat-toolbar {
   .mat-dialog-content-height{
     max-height: none;
   }
+  #img-responsive {
+    height: 95px;
+    width: 95px;
+  }

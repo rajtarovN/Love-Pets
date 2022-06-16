@@ -1,0 +1,14 @@
+mat-card {
+  
+    width: 90%;
+    background-color: #b9edd7;
+    box-shadow: none !important;
+    margin: 40px;
+  }
+  h3 {
+    text-align: center;
+    background-color: #b9edd7;
+    box-shadow: none !important;
+    font-size: 20;
+    color: #424242;
+  }

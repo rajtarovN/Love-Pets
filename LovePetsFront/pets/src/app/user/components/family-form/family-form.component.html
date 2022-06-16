@@ -1,94 +1,68 @@
-<mat-card class="card-position">
-  <p>
-    <mat-toolbar>
-      <span>My Application</span>
-    </mat-toolbar>
-  </p>
-    <mat-card-header>
-      <mat-card-title>First part of questions</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<div  class="back"> <p>
+  <mat-toolbar>
+    <span>My Application</span>
+  </mat-toolbar>
+</p>
+<mat-card class="card-position back">
+
+  <mat-card-header>
+  </mat-card-header>
+  <mat-card-content>
       <!--  -->
+      <div class="divForm">
       <form  [formGroup]="secondPartQuestions">
-        <mat-form-field appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="childrenYears"
-            id="childrenYears"
-            required
-            [(ngModel)]="this.childrenYears"
-      
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="goodInSport" appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="goodInSport"
-            id="goodInSport"
-            required
-            [(ngModel)]="this.goodInSport"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="physiclyActive" appearance="standard">
-          <input
-            matInput
-            type="text"
-            formControlName="physiclyActive"
-            id="physiclyActive"
-            required
-            [(ngModel)]="this.physiclyActive"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="loveReserching" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="loveReserching"
-            formControlName="loveReserching"
-            required
-            [(ngModel)]="this.loveReserching"
-          />
-        </mat-form-field>
-  
-        <mat-form-field id="moreTime" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="moreTime"
-            formControlName="moreTime"
-            required
-            [(ngModel)]="this.moreTime"
-          />
+
+        <mat-label class = "labelColor">Select years of the youngest children: </mat-label><br/>
+            <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="lowerThanOne">Lower than 1 year</option>
+              <option value="one">1 year</option>
+              <option value="five">5 years</option>
+              <option value="twelve">12 years</option>
+              <option value="moreThen15">More then 15 years</option>
+            </select>
         </mat-form-field>
 
-        
-        <mat-form-field id="introvertEkstrovert" appearance="standard">
-            <input
-              matInput
-              type="text"
-              id="introvertEkstrovert"
-              formControlName="introvertEkstrovert"
-              required
-              [(ngModel)]="this.introvertEkstrovert"
-            />
-          </mat-form-field>
+        <mat-label class = "labelColor">Select how good in sport are children: </mat-label><br/>
+            <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="good">Good (Love runing for example or play something)</option>
+              <option value="bad">Not so good (Not relly active or not intrested in sport)</option>
+            </select>
+        </mat-form-field>
+  
+        <mat-label class = "labelColor">Select how physicly active are children: </mat-label><br/>
+            <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="active">Active </option>
+              <option value="notActive">Not so active</option>
+            </select>
+        </mat-form-field>
 
-          
-        <mat-form-field id="personalities" appearance="standard">
-            <input
-              matInput
-              type="text"
-              id="personalities"
-              formControlName="personalities"
-              required
-              [(ngModel)]="this.personalities"
-            />
-          </mat-form-field>
+        <mat-label class = "labelColor">Select how much your children love reserching: </mat-label><br/>
+            <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="love">Love reserching (Love to explore new places, animals, science)</option>
+              <option value="dontLove">Not really intrested in reserching</option>
+            </select>
+        </mat-form-field>
+  
+        <mat-label class = "labelColor">Would you like that children speding more time with animal? </mat-label><br/>
+            <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="yess">Yess</option>
+              <option value="no">No</option>
+            </select>
+        </mat-form-field>
+
+        <mat-label class = "labelColor">Are your children more introvert or ekstrovert? </mat-label><br/>
+        <mat-form-field appearance="fill">
+        <select matNativeControl required>
+          <option value="introvert">Introvert</option>
+          <option value="ekstrovert">Extrovert</option>
+        </select>
+    </mat-form-field>
+
       </form>
   
       <mat-action-list>
@@ -102,7 +76,8 @@
         <!-- [disabled]="firstPartQuestions.invalid" -->
           Next
         </button>
-      </mat-action-list>
+      
+      </mat-action-list></div>
     </mat-card-content>
   </mat-card>
-  
+</div>
