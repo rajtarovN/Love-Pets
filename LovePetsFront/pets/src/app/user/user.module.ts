@@ -8,21 +8,27 @@ import { MaterialModule } from '../root/material-module';
 import { UserRoutes } from './user.routes';
 import { SinglePersonFormComponent } from './components/single-person-form/single-person-form.component';
 import { FamilyFormComponent } from './components/family-form/family-form.component';
-
-
+//import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     MainFormComponent,
     SinglePersonFormComponent,
-    FamilyFormComponent
+    FamilyFormComponent,
+    //UserDashboardComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(UserRoutes),
     HttpClientModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
+  ],
 })
-export class UserModule { }
+export class UserModule {}

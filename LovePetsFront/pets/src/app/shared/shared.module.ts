@@ -31,5 +31,6 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     MaterialModule,
   ],
+  exports: [ViewPetComponent],
 })
 export class SharedModule {}

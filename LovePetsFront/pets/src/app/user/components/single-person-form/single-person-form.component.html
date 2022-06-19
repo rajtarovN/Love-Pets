@@ -10,34 +10,6 @@
       <!--  -->
       <div class="divForm">
         <form [formGroup]="secondPartQuestions">
-          <mat-label class="labelColor">Select do you love running: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="loveRunning">Love running</option>
-              <option value="notLoveRuning">Don't love runinig</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor">Select do you love walking: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="loveWalking">Love walking</option>
-              <option value="notLoveWalking">Don't love walking</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor"
-            >Select your type of personality: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="extrovert">Extrovert</option>
-              <option value="introvert">Introvert</option>
-            </select>
-          </mat-form-field>
-
           <mat-label class="labelColor"
             >Input level of stress of your job from 0-5: </mat-label
           ><br />
@@ -50,15 +22,6 @@
               required
               [(ngModel)]="this.levelOfStressOnJob"
             />
-          </mat-form-field>
-
-          <mat-label class="labelColor">Select do you love mystery: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="yess">Yess</option>
-              <option value="no">No</option>
-            </select>
           </mat-form-field>
 
           <mat-label class="labelColor"
@@ -117,6 +80,41 @@
             />
           </mat-form-field>
         </form>
+
+        <div class="df2">
+          <mat-label class="labelColor">Select do you love running: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedRunning">
+            <option *ngFor="let o of options">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor">Select do you love walking: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedWalking">
+            <option *ngFor="let o of options">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor">Select do you love mystery: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMystery">
+            <option *ngFor="let o of options">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select your type of personality: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedType">
+            <option *ngFor="let o of optionsType">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
 
         <mat-action-list>
           <button

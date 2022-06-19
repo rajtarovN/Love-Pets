@@ -1,7 +1,13 @@
 <div class="back">
   <p>
     <mat-toolbar>
-      <span>My Application</span>
+      <span>Love & Pets</span>
+      <span class="navBar">
+        <img mat-icon [src]="'assets/images/heartPaw2.png'" class="side-icon" />
+        <button class="buttonsInSpan">View pets</button>
+        <button class="buttonsInSpan">Find best pet</button>
+        <button class="buttonsInSpan">bek</button></span
+      >
     </mat-toolbar>
   </p>
   <mat-card class="card-position back">
@@ -10,15 +16,9 @@
       <!--  -->
       <div class="divForm">
         <form [formGroup]="firstPartQuestions">
-          <mat-label class="labelColor">Activness</mat-label>
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="active">Active</option>
-              <option value="notActive">Not so active</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor">Input levefrom 0-5 </mat-label>
+          <mat-label class="labelColor"
+            >Input level of protection from 0-5:
+          </mat-label>
           <mat-form-field id="levelOfProtection" appearance="standard">
             <input
               matInput
@@ -57,11 +57,17 @@
               [(ngModel)]="this.price"
             />
           </mat-form-field>
-
+        </form>
+        <div class="df2">
           <mat-label class="labelColor"
-            >Select where would your pet live:
-          </mat-label>
-          <mat-form-field appearance="fill">
+            >Select where would your pet live: </mat-label
+          ><br />
+          <select [(ngModel)]="this.placeForLiving">
+            <option *ngFor="let o of optionsPlace">
+              {{ o.name }}
+            </option>
+          </select>
+          <!-- <mat-form-field appearance="fill">
             <select matNativeControl required>
               <option value="inside">Inside of house (or flat)</option>
               <option value="outside">In the garden</option>
@@ -69,8 +75,20 @@
                 In the garden or inside of house (flat)
               </option>
             </select>
-          </mat-form-field>
-        </form>
+          </mat-form-field> -->
+          <mat-label class="labelColor">Activness</mat-label>
+          <!-- <mat-form-field appearance="fill">
+            <select matNativeControl required>
+              <option value="active">Active</option>
+              <option value="notActive">Not so active</option>
+            </select>
+          </mat-form-field> -->
+          <select [(ngModel)]="this.activness">
+            <option *ngFor="let o of optionsActive">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
 
         <mat-action-list>
           <button

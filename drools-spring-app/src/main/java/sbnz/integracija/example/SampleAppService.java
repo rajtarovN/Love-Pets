@@ -198,7 +198,7 @@ public class SampleAppService {
     	List<String> notAll = new ArrayList<String>();
     	//notAll.add("a");
     	List<String> alergic = new ArrayList<String>();
-    	alergic.add("dog");
+    	//alergic.add("dog");
     	List<String> afraid = new ArrayList<String>();
     	//afraid.add("a");
     	List<String> liveWith = new ArrayList<String>();

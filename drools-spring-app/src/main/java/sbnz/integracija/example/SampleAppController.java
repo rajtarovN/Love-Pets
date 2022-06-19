@@ -45,7 +45,7 @@ public class SampleAppController {
 //		log.debug("Item request received for: " + newPet);
 //
 //		Pet i2 = sampleService.getClassifiedItem(newPet);
-		Pet i2 = this.sampleService.findBestPetChildren((long)0);//findBestPetChildren((long) 0);//sampleService.bek2();//this.sampleService.findBestPetChildren((long) 0);
+		Pet i2 = this.sampleService.bek2();//findBestPetChildren((long)0);//findBestPetChildren((long) 0);//sampleService.bek2();//this.sampleService.findBestPetChildren((long) 0);
 		return i2;
 	}
 	
