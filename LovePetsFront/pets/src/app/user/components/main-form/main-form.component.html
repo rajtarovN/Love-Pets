@@ -88,6 +88,14 @@
               {{ o.name }}
             </option>
           </select>
+          <mat-label class="labelColor"
+            >Select if you are single person or have familly:</mat-label
+          >
+          <select [(ngModel)]="this.selectedSF">
+            <option *ngFor="let o of optionsSF">
+              {{ o.name }}
+            </option>
+          </select>
         </div>
 
         <mat-action-list>

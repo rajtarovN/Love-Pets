@@ -1,5 +1,10 @@
 <div id="container-div" class="back">
   <div>
+    <p>
+      <mat-toolbar>
+        <span>My Application</span>
+      </mat-toolbar>
+    </p>
     <form [formGroup]="secondPartQuestions">
       <div class="divForm">
         <mat-label class="labelColor">Input name: </mat-label><br />
@@ -49,6 +54,7 @@
             [(ngModel)]="this.password"
           />
         </mat-form-field>
+        <br /><button (click)="this.submit()">Login</button>
       </div>
     </form>
   </div>

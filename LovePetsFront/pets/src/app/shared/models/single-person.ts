@@ -1,9 +1,9 @@
 export interface SinglePerson {
-  activeness: boolean;
-  levelOfProtection: number;
-  hoursPerWeek: number;
-  price: number;
-  placeForLiving: string;
+  activeness?: boolean;
+  levelOfProtection?: number;
+  hoursPerWeek?: number;
+  price?: number;
+  placeForLiving?: string;
 
   loveRunning: boolean;
   loveWalking: boolean;

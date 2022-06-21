@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ViewPetComponent } from './components/view-pet/view-pet.component';
 import { InputPetComponent } from './components/input-pet/input-pet.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const SharedRoutes: Routes = [
   {
@@ -18,5 +19,10 @@ export const SharedRoutes: Routes = [
     path: 'registration',
     pathMatch: 'full',
     component: RegistrationComponent,
+  },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    component: LoginComponent,
   },
 ];

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { MainFormComponent } from './components/main-form/main-form.component';
 import { SinglePersonFormComponent } from './components/single-person-form/single-person-form.component';
 import { FamilyFormComponent } from './components/family-form/family-form.component';
-//import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 export const UserRoutes: Routes = [
   {
@@ -20,9 +20,9 @@ export const UserRoutes: Routes = [
     pathMatch: 'full',
     component: FamilyFormComponent,
   },
-  // {
-  //   path: 'user-dashboard',
-  //   pathMatch: 'full',
-  //   component: UserDashboardComponent,
-  // },
+  {
+    path: 'user-dashboard',
+    pathMatch: 'full',
+    component: UserDashboardComponent,
+  },
 ];

@@ -8,7 +8,10 @@ import { SinglePerson } from '../../../shared/models/single-person';
   providedIn: 'root',
 })
 export class FormServiceService {
-  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  });
 
   constructor(private http: HttpClient) {}
 
@@ -27,10 +30,11 @@ export class FormServiceService {
 
   sendSinglepersonForm(form: SinglePerson): Observable<any> {
     //todo nisam sig sta dode u <>
-    const res = this.http.post<SinglePerson>(
-      'http://localhost:8080/sendSinglePersonForm',
-      form,
+    const res = this.http.get<SinglePerson>(
+      'http://localhost:8080/api/dog',
+      //form,
       {
+        // header('Access-Control-Allow-Origin: *');
         headers: this.headers,
         responseType: 'json',
       }

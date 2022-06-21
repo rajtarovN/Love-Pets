@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,6 +17,9 @@ import { MainForm } from '../../../shared/models/main-form';
 })
 export class FamilyFormComponent implements OnInit {
   secondPartQuestions: FormGroup;
+
+  @Output() filledForm = new EventEmitter<{ form: Family }>();
+
   selectedIntrovertExtrovert: '';
   selectedMoreTime: '';
   selectedResersching: '';
@@ -96,6 +99,7 @@ export class FamilyFormComponent implements OnInit {
           introvertEkstrovert: this.selectedIntrovertExtrovert,
         };
         console.log(family);
+        this.filledForm.emit({ form: family });
       }
     }
   }

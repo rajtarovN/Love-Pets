@@ -4,4 +4,5 @@ export interface MainForm {
   hoursPerWeek: number;
   price: number;
   placeForLiving: string;
+  type?: string;
 }

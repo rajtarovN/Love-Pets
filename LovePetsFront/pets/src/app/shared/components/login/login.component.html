@@ -1,5 +1,10 @@
 <div id="container-div" class="back">
   <div>
+    <p>
+      <mat-toolbar>
+        <span>My Application</span>
+      </mat-toolbar>
+    </p>
     <form [formGroup]="secondPartQuestions">
       <div class="divForm">
         <mat-label class="labelColor">Input email: </mat-label><br />
@@ -26,6 +31,7 @@
           />
         </mat-form-field>
       </div>
+      <button (click)="this.submit()">Login</button>
     </form>
   </div>
 </div>

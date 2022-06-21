@@ -17,7 +17,7 @@
 
           <!-- <mat-form-field appearance="fill"> -->
           <select [(ngModel)]="this.selectedYears">
-            <option *ngFor="let o of options">
+            <option *ngFor="let o of options" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
@@ -46,7 +46,11 @@
             matNativeControl
             required
           >
-            <option class="optionC" *ngFor="let o of optionsSport">
+            <option
+              class="optionC"
+              *ngFor="let o of optionsSport"
+              value="{{ o.value }}"
+            >
               {{ o.name }}
             </option>
           </select>
@@ -65,7 +69,7 @@
             >Select how physicly active are children: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedActivness">
-            <option *ngFor="let o of optionsActivness">
+            <option *ngFor="let o of optionsActivness" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
@@ -80,7 +84,7 @@
             >Select how much your children love reserching: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedResersching">
-            <option *ngFor="let o of optionsRes">
+            <option *ngFor="let o of optionsRes" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
@@ -100,7 +104,7 @@
             >Select would you like that children speding more time with animal? </mat-label
           ><br />
           <select [(ngModel)]="this.selectedMoreTime">
-            <option *ngFor="let o of optionsMoreTime">
+            <option *ngFor="let o of optionsMoreTime" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
@@ -116,7 +120,7 @@
             >Are your children more introvert or ekstrovert? </mat-label
           ><br />
           <select [(ngModel)]="this.selectedIntrovertExtrovert">
-            <option *ngFor="let o of optionsType">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>

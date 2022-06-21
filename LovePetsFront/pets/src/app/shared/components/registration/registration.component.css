@@ -1,5 +1,6 @@
 .back {
   background-image: url('src/assets/images/paw.png');
+  height: 100%;
 }
 mat-toolbar {
     background: #b9edd7;

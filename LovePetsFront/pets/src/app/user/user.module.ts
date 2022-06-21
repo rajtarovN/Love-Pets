@@ -10,13 +10,14 @@ import { SinglePersonFormComponent } from './components/single-person-form/singl
 import { FamilyFormComponent } from './components/family-form/family-form.component';
 //import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
     MainFormComponent,
     SinglePersonFormComponent,
     FamilyFormComponent,
-    //UserDashboardComponent,
+    UserDashboardComponent,
   ],
   imports: [
     CommonModule,

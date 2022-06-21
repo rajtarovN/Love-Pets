@@ -1,41 +1,62 @@
 package sbnz.integracija.example.model;
 
+import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import sbnz.integracija.example.enums.PlaceForLiving;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class User {
+@Entity
+@Table(name = "system_user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User implements UserDetails{
 
-    
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     protected Long id;
 
-   
+	 @Column(unique = false, nullable = true)
     protected String firstName;
+	 
+	 @Column(unique = false, nullable = true)
+	    protected String username;
 
-   
+    @Column(unique = false, nullable = true)
     protected String lastName;
 
-   
+    @Column(unique = true, nullable = false)
     protected String email;
 
-    
+    @Column(unique = false, nullable = true)
     protected String password;
 
-   
+    @Column(unique = false, nullable = true)
     protected Boolean active;
-    
+    @Column(unique = false, nullable = true)
     protected int levelOfProtection;
-    
+    @Column(unique = false, nullable = true)
     protected int hoursPerWeek;
-    
+    @Column(unique = false, nullable = true)
     protected float price;
-    
+    @Column(unique = false, nullable = true)
     protected PlaceForLiving placeForLiving;
-    
+    @ElementCollection
     protected List<String> alergicOn; //ovo je tip zivotinje
-    
+    @ElementCollection
     protected List<String> afraidOf;
-    
+    @ElementCollection
     protected List<String> liveWith;
 
     public Long getId() {
@@ -78,7 +99,11 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getActive() {
+    public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Boolean getActive() {
         return active;
     }
 
@@ -175,4 +200,34 @@ public class User {
 
     public User() {
     }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.email;
+	}
 }

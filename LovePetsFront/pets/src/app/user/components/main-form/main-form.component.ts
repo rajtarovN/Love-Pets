@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MainForm } from '../../../shared/models/main-form';
 
 @Component({
   selector: 'app-main-form',
@@ -9,11 +10,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class MainFormComponent implements OnInit {
   firstPartQuestions: FormGroup;
 
-  activness: string;
-  levelOfProtection: string;
-  hoursPerWeek: string;
-  price: string;
-  placeForLiving: string;
+  @Output() filledForm = new EventEmitter<{ form: MainForm }>();
+
+  activness: string = '';
+  levelOfProtection: number;
+  hoursPerWeek: number;
+  price: number;
+  placeForLiving: string = '';
+  selectedSF: string = '';
   optionsPlace = [
     { name: 'Inside of house (or flat)', value: 'inside' },
     { name: 'In the garden', value: 'outside' },
@@ -25,6 +29,11 @@ export class MainFormComponent implements OnInit {
   optionsActive = [
     { name: 'Active', value: 'active' },
     { name: 'not so active', value: 'notActive' },
+  ];
+
+  optionsSF = [
+    { name: 'Single person', value: 'single' },
+    { name: 'Familly', value: 'familly' },
   ];
   regex = '/^[0-5]+$/';
 
@@ -39,12 +48,21 @@ export class MainFormComponent implements OnInit {
       ]),
       hoursPerWeek: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
-      placeForLiving: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit(): void {}
   submit(): void {
     console.log('submit');
+
+    var newForm: MainForm = {
+      activeness: this.activness === 'Active',
+      hoursPerWeek: this.hoursPerWeek,
+      levelOfProtection: this.levelOfProtection,
+      placeForLiving: this.placeForLiving,
+      price: this.price,
+      type: this.selectedSF,
+    };
+    this.filledForm.emit({ form: newForm });
   }
 }

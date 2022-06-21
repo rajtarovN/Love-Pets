@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SinglePerson } from '../../../shared/models/single-person';
 
 @Component({
   selector: 'app-single-person-form',
@@ -9,28 +10,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SinglePersonFormComponent implements OnInit {
   secondPartQuestions: FormGroup;
 
-  loveRunning: boolean;
-  loveWalking: boolean;
-  extroversion: boolean;
-  introversion: boolean;
+  @Output() filledForm = new EventEmitter<{ form: SinglePerson }>();
+
   levelOfStressOnJob: number;
-  loveMystery: boolean;
   loveMeditation: number;
   levelOfPatience: number;
   levelOfPersistance: number;
   friendly: number;
 
-  selectedRunning: '';
-  selectedWalking: '';
-  selectedType: '';
-  selectedMystery: '';
+  selectedRunning: string = '';
+  selectedWalking: string = '';
+  selectedType: string = '';
+  selectedMystery: string = '';
 
   options = [
     { name: 'Yess', value: 'yess' },
     { name: 'No', value: 'no' },
   ];
   optionsType = [
-    { name: 'Ekstrovert', value: 'ekstrovert' },
+    { name: 'Extrovert', value: 'extrovert' },
     { name: 'Introvert', value: 'introvert' },
   ];
 
@@ -51,6 +49,20 @@ export class SinglePersonFormComponent implements OnInit {
     });
   }
   submit(): void {
+    var newForm: SinglePerson = {
+      activeness: this.selectedRunning === 'yess',
+      extroversion: this.selectedType === 'Extrovert',
+      friendly: this.friendly,
+      introversion: this.selectedType === 'Introvert',
+      levelOfPatience: this.levelOfPatience,
+      levelOfPersistance: this.levelOfPersistance,
+      levelOfStressOnJob: this.levelOfStressOnJob,
+      loveMystery: this.selectedMystery === 'Yess',
+      loveRunning: this.selectedRunning === 'Yess',
+      loveWalking: this.selectedWalking === 'Yess',
+      loveMeditation: this.loveMeditation,
+    };
     console.log('submit');
+    this.filledForm.emit({ form: newForm });
   }
 }
