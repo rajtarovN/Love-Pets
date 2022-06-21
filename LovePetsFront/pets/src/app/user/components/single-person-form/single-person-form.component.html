@@ -65,6 +65,13 @@
               [(ngModel)]="this.levelOfPersistance"
             />
           </mat-form-field>
+          <mat-label class="labelColor">Select do you love mystery: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMystery">
+            <option *ngFor="let o of options">
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
             >Input your level of friendlyness from 0-5: </mat-label

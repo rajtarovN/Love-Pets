@@ -1,36 +1,69 @@
 package sbnz.integracija.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import sbnz.integracija.example.dto.FormFamillyDTO;
+import sbnz.integracija.example.dto.FormSinglePersonDTO;
 import sbnz.integracija.example.dto.PetDTO;
 import sbnz.integracija.example.dto.SinglePersonDTO;
+import sbnz.integracija.example.dto.UserRegisterDTO;
 import sbnz.integracija.example.model.Pet;
-@CrossOrigin(origins = "http://localhost:4200")
-@Controller
-@RequestMapping("/api/pet")
+
+@RestController
 public class PetController {
 	
-	@Autowired
-	public PetService petService;
 	
-//	@Autowired
-//	public PetController(PetService petService) {
-//		this.petService = petService;
-//	}
+	public final PetService petService;
 	
-	    @ResponseBody
-	    
-	    @PostMapping(path = "/findBestPet")
-	    @CrossOrigin(origins = "http://localhost:4200")
-	    //@PreAuthorize("hasRole('ADMIN')")(@RequestBody SinglePersonDTO dto
-	    public Pet findBestPet() throws Exception{
-	    	return this.petService.findBestPet();
-	    }
+	
 
+	@Autowired
+	public PetController(PetService petService) {
+		this.petService = petService;
+	}
+	
+	@RequestMapping(value = "/addPet", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> addPet(@RequestBody PetDTO dto) {
+		System.out.println(dto.getName());
+        return new ResponseEntity<>(this.petService.addPet(dto), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/getAllPets", method = RequestMethod.GET, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> getAllPets() {
+		
+        return new ResponseEntity<>(this.petService.getAll(), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/findPetFamilly", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> findPetFamilly(@RequestBody FormFamillyDTO dto) {
+        return new ResponseEntity<>(this.petService.findBestPetForFamilly(dto), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/findPetSinglePerson", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> findPetSinglePerfon(@RequestBody FormSinglePersonDTO dto) {
+		
+        return new ResponseEntity<>(this.petService.findBestPetForSinglePerson(dto), HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> addPet(@PathVariable Long id) {
+		
+        return new ResponseEntity<>(this.petService.delete(id), HttpStatus.OK);
+    }
 }

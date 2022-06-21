@@ -4,6 +4,8 @@ sbnz\integracija\repository\UserRepository.class
 sbnz\integracija\example\model\SinglPerson.class
 sbnz\integracija\example\PetService.class
 sbnz\integracija\example\model\Pet.class
+sbnz\integracija\example\dto\FormFamillyDTO.class
+sbnz\integracija\example\dto\FormSinglePersonDTO.class
 sbnz\integracija\example\UserService.class
 sbnz\integracija\example\repository\UserRepository.class
 sbnz\integracija\example\SampleAppService.class
@@ -23,6 +25,7 @@ sbnz\integracija\example\dto\SinglePersonDTO.class
 sbnz\integracija\example\configuration\WebSecurityConfig.class
 sbnz\integracija\example\UsreDetailsService.class
 sbnz\integracija\example\security\RestAuthenticationEntryPoint.class
+sbnz\integracija\example\repository\PetRepository.class
 sbnz\integracija\example\PetController.class
 sbnz\integracija\example\model\Helper.class
 sbnz\integracija\example\security\SecurityUser.class

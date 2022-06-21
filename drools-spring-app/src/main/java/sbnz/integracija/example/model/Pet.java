@@ -1,49 +1,103 @@
 package sbnz.integracija.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import sbnz.integracija.example.dto.PetDTO;
 import sbnz.integracija.example.enums.PlaceForLiving;
 
-
+@Entity
+@Table(name = "pet")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pet {
 
 	//todo dodati mesecno troskovi za hranu ili kao dodatni troskovi tipa akvarijum, ili kao neku napomenu pri odabiru ljubimca
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
 	private Long id;
+	
+	 @Column(unique = false, nullable = true)
     private String name;
 
-
+	 @Column(unique = false, nullable = true)
     private String type;
 
-
+	 @Column(unique = false, nullable = true)
     private float hoursPerWeek;
-
+	 
+	 @Column(unique = false, nullable = true)
     private float price;
-    
+	 
+	 @Column(unique = false, nullable = true)
     private int adoptableOnKids; //stepen prilagodljivosti na decu
-
+	 
+	 @Column(unique = false, nullable = true)
     private int minYears; //minimum godina koliko deca trebaju imate da bi ga prihvatili
-    
+	 
+	 @Transient 
     private List<String> notAllowdToLiveWith;
-
+	 
+	 @Column(unique = false, nullable = true)
+	    private String notLiveWith;
+	 
+    @Column(unique = false, nullable = true)
     private int levelOfActivity; //ovako ovo neka ide do 3, 3 je voli trc i setnju, 2 setnja, 1 nista 
-
+    
+    @Column(unique = false, nullable = true)
     private int degreeOfMolting; //stepen linjanja
     
+    @Column(unique = false, nullable = true)
     private PlaceForLiving placeForLiving;
     
+    @Column(unique = false, nullable = true)
     private int levelOfProtection;
     
+    @Column(unique = false, nullable = true)
 	private boolean extroversion;
+    
+    @Column(unique = false, nullable = true)
 	private boolean introversion;
+    
+    @Column(unique = false, nullable = true)
 	private int levelOfStressOnJob;
+    
+    @Column(unique = false, nullable = true)
 	private boolean loveMystery;
+    
+    @Column(unique = false, nullable = true)
 	private int loveMeditation;
+    
+    @Column(unique = false, nullable = true)
 	private int levelOfPatience;
+    
+    @Column(unique = false, nullable = true)
 	private int levelOfPersistance;
     
+    
+    
 
-    public String getName() {
+    public String getNotLiveWith() {
+		return notLiveWith;
+	}
+
+	public void setNotLiveWith(String notLiveWith) {
+		this.notLiveWith = notLiveWith;
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -222,6 +276,29 @@ public class Pet {
 
 	public Pet() {
 		super();
+	}
+
+	public Pet(PetDTO dto) {
+		this.name = dto.getName();
+		this.type = dto.getType();
+		this.hoursPerWeek = dto.getHoursPerWeek();
+		this.price = dto.getPrice();
+		this.adoptableOnKids = dto.getAdoptableOnKids();
+		this.minYears = dto.getMinYears();
+		this.notAllowdToLiveWith = dto.getNotAllowdToLiveWith();
+		this.levelOfActivity = dto.getLevelOfActivity();
+		this.degreeOfMolting = dto.getDegreeOfMolting();
+		this.placeForLiving = (dto.getPlaceForLiving().equals("inside") ? PlaceForLiving.INSIDE :
+			dto.getPlaceForLiving().equals("outside")? PlaceForLiving.OUTSIDE : PlaceForLiving.INSIDE_OUTSIDE);
+		this.levelOfProtection = dto.getLevelOfProtection();
+		this.extroversion = dto.isExtroversion();
+		this.levelOfStressOnJob = dto.getLevelOfStressOnJob();
+		this.loveMystery = dto.isLoveMystery();
+		this.loveMeditation = dto.getLoveMeditation();
+		this.levelOfPatience = dto.getLevelOfPatience();
+		this.levelOfPersistance = dto.getLevelOfPersistance();
+		this.introversion = !dto.isExtroversion();
+		this.notAllowdToLiveWith = new ArrayList<String>();
 	}
 
 	public boolean isIntroversion() {

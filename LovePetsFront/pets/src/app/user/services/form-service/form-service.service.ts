@@ -16,9 +16,8 @@ export class FormServiceService {
   constructor(private http: HttpClient) {}
 
   sendFamilyForm(form: Family): Observable<any> {
-    //todo nisam sig sta dode u <>
     const res = this.http.post<Family>(
-      'http://localhost:8080/sendFamily',
+      'http://localhost:8080/api/findPetFamilly',
       form,
       {
         headers: this.headers,
@@ -29,10 +28,9 @@ export class FormServiceService {
   }
 
   sendSinglepersonForm(form: SinglePerson): Observable<any> {
-    //todo nisam sig sta dode u <>
-    const res = this.http.get<SinglePerson>(
-      'http://localhost:8080/api/dog',
-      //form,
+    const res = this.http.post<SinglePerson>(
+      'http://localhost:8080/api/findPetSinglePerson',
+      form,
       {
         // header('Access-Control-Allow-Origin: *');
         headers: this.headers,

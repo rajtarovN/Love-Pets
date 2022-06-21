@@ -22,16 +22,6 @@
             />
           </mat-form-field>
 
-          <mat-label class="labelColor">Select type: </mat-label><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-              <option value="fish">Fish</option>
-              <option value="bird">Bird</option>
-            </select>
-          </mat-form-field>
-
           <mat-label class="labelColor"
             >Input how much hours per week you can spend on pet:
           </mat-label>
@@ -61,59 +51,6 @@
           </mat-form-field>
 
           <mat-label class="labelColor"
-            >Select where would your pet live:
-          </mat-label>
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="inside">Inside of house (or flat)</option>
-              <option value="outside">In the garden</option>
-              <option value="insideOutside">
-                In the garden or inside of house (flat)
-              </option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor"
-            >Select miminum years of children: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="lowerThanOne">Lower than 1 year</option>
-              <option value="one">1 year</option>
-              <option value="five">5 years</option>
-              <option value="twelve">12 years</option>
-              <option value="moreThen15">More then 15 years</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor">Select do you love running: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="loveRunning">Love running</option>
-              <option value="notLoveRuning">Don't love runinig</option>
-            </select>
-          </mat-form-field>
-          <mat-label class="labelColor">Select do you love walking: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="loveWalking">Love walking</option>
-              <option value="notLoveWalking">Don't love walking</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor"
-            >Select your type of personality: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="extrovert">Extrovert</option>
-              <option value="introvert">Introvert</option>
-            </select>
-          </mat-form-field>
-
-          <mat-label class="labelColor"
             >Input level of stress of your job from 0-5: </mat-label
           ><br />
           <mat-form-field id="levelOfStressOnJob" appearance="standard">
@@ -140,6 +77,19 @@
               [(ngModel)]="this.adoptableOnKids"
             />
           </mat-form-field>
+          <mat-label class="labelColor"
+            >Input level of protection from 0-5:
+          </mat-label>
+          <mat-form-field id="levelOfProtection" appearance="standard">
+            <input
+              matInput
+              type="number"
+              formControlName="levelOfProtection"
+              id="levelOfProtection"
+              required
+              [(ngModel)]="this.levelOfProtection"
+            />
+          </mat-form-field>
 
           <mat-label class="labelColor"
             >Input level of adoptable on kids: </mat-label
@@ -153,15 +103,6 @@
               required
               [(ngModel)]="this.levelOfActivity"
             />
-          </mat-form-field>
-
-          <mat-label class="labelColor">Select do you love mystery: </mat-label
-          ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="yess">Yess</option>
-              <option value="no">No</option>
-            </select>
           </mat-form-field>
 
           <mat-label class="labelColor"
@@ -178,7 +119,20 @@
             />
           </mat-form-field>
           <mat-label class="labelColor"
-            >Input how much do you love meditation from 0-5: </mat-label
+            >Input your level of persistence from 0-5: </mat-label
+          ><br />
+          <mat-form-field id="levelOfPersistance" appearance="standard">
+            <input
+              matInput
+              type="number"
+              id="levelOfPersistance"
+              formControlName="levelOfPersistance"
+              required
+              [(ngModel)]="this.levelOfPersistance"
+            />
+          </mat-form-field>
+          <mat-label class="labelColor"
+            >Input how much do you love molting from 0-5: </mat-label
           ><br />
           <mat-form-field id="degreeOfMolting" appearance="standard">
             <input
@@ -206,20 +160,6 @@
           </mat-form-field>
 
           <mat-label class="labelColor"
-            >Input your level of persistence from 0-5: </mat-label
-          ><br />
-          <mat-form-field id="levelOfPersistance" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="levelOfPersistance"
-              formControlName="levelOfPersistance"
-              required
-              [(ngModel)]="this.levelOfPersistance"
-            />
-          </mat-form-field>
-
-          <mat-label class="labelColor"
             >Input your level of friendlyness from 0-5: </mat-label
           ><br />
           <mat-form-field id="friendly" appearance="standard">
@@ -232,65 +172,114 @@
               [(ngModel)]="this.friendly"
             />
           </mat-form-field>
+        </form>
+
+        <div class="f2">
+          <mat-label class="labelColor"
+            >Select years of the youngest children: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedYears">
+            <option *ngFor="let o of options" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
             >Select how good in sport are children: </mat-label
           ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="good">
-                Good (Love runing for example or play something)
-              </option>
-              <option value="bad">
-                Not so good (Not relly active or not intrested in sport)
-              </option>
-            </select>
-          </mat-form-field>
+
+          <select
+            [(ngModel)]="this.selectedSport"
+            class="selectC"
+            matNativeControl
+            required
+          >
+            <option
+              class="optionC"
+              *ngFor="let o of optionsSport"
+              value="{{ o.value }}"
+            >
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
             >Select how physicly active are children: </mat-label
           ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="active">Active</option>
-              <option value="notActive">Not so active</option>
-            </select>
-          </mat-form-field>
+          <select [(ngModel)]="this.selectedActivness">
+            <option *ngFor="let o of optionsActivness" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
             >Select how much your children love reserching: </mat-label
           ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="love">
-                Love reserching (Love to explore new places, animals, science)
-              </option>
-              <option value="dontLove">
-                Not really intrested in reserching
-              </option>
-            </select>
-          </mat-form-field>
+          <select [(ngModel)]="this.selectedResersching">
+            <option *ngFor="let o of optionsRes" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
-            >Would you like that children speding more time with animal? </mat-label
+            >Select would you like that children speding more time with animal? </mat-label
           ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="yess">Yess</option>
-              <option value="no">No</option>
-            </select>
-          </mat-form-field>
+          <select [(ngModel)]="this.selectedMoreTime">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
 
           <mat-label class="labelColor"
             >Are your children more introvert or ekstrovert? </mat-label
           ><br />
-          <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="introvert">Introvert</option>
-              <option value="ekstrovert">Extrovert</option>
-            </select>
-          </mat-form-field>
-        </form>
+          <select [(ngModel)]="this.selectedIntrovertExtrovert">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor">Select do you love running: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedRunning">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor">Select do you love walking: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedWalking">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor">Select do you love mystery: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMystery">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select your type of personality: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedType">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor"
+            >Select where would your pet live: </mat-label
+          ><br />
+          <select [(ngModel)]="this.placeForLiving">
+            <option *ngFor="let o of optionsPlace" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
 
         <mat-action-list>
           <button

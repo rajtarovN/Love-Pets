@@ -23,7 +23,12 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.secondPartQuestions = this.fb.group({});
+    this.secondPartQuestions = this.fb.group({
+      name: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
 
   submit(): void {
@@ -32,6 +37,7 @@ export class RegistrationComponent implements OnInit {
       name: this.name,
       password: this.password,
       email: this.email,
+      username: this.email,
     };
     this.userService.register(user).subscribe((res) => {
       console.log(res, 'ddd');

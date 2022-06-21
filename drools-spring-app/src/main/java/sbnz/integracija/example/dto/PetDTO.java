@@ -16,7 +16,7 @@ public class PetDTO {
     private List<String> notAllowdToLiveWith;
     private int levelOfActivity; //ovako ovo neka ide do 3, 3 je voli trc i setnju, 2 setnja, 1 nista 
     private int degreeOfMolting; //stepen linjanja
-    private PlaceForLiving placeForLiving;
+    private String placeForLiving;
     private int levelOfProtection;
 	private boolean extroversion;
 	private boolean introversion;
@@ -85,12 +85,7 @@ public class PetDTO {
 	public void setDegreeOfMolting(int degreeOfMolting) {
 		this.degreeOfMolting = degreeOfMolting;
 	}
-	public PlaceForLiving getPlaceForLiving() {
-		return placeForLiving;
-	}
-	public void setPlaceForLiving(PlaceForLiving placeForLiving) {
-		this.placeForLiving = placeForLiving;
-	}
+	
 	public int getLevelOfProtection() {
 		return levelOfProtection;
 	}
@@ -139,8 +134,14 @@ public class PetDTO {
 	public void setLevelOfPersistance(int levelOfPersistance) {
 		this.levelOfPersistance = levelOfPersistance;
 	}
+	public String getPlaceForLiving() {
+		return placeForLiving;
+	}
+	public void setPlaceForLiving(String placeForLiving) {
+		this.placeForLiving = placeForLiving;
+	}
 	public PetDTO(Long id, String name, String type, float hoursPerWeek, float price, int adoptableOnKids, int minYears,
-			List<String> notAllowdToLiveWith, int levelOfActivity, int degreeOfMolting, PlaceForLiving placeForLiving,
+			List<String> notAllowdToLiveWith, int levelOfActivity, int degreeOfMolting, String placeForLiving,
 			int levelOfProtection, boolean extroversion, boolean introversion, int levelOfStressOnJob,
 			boolean loveMystery, int loveMeditation, int levelOfPatience, int levelOfPersistance) {
 		super();
@@ -179,7 +180,7 @@ public class PetDTO {
 		this.notAllowdToLiveWith = pet.getNotAllowdToLiveWith();
 		this.levelOfActivity = pet.getLevelOfActivity();
 		this.degreeOfMolting = pet.getDegreeOfMolting();
-		this.placeForLiving = pet.getPlaceForLiving();
+		this.placeForLiving = pet.getPlaceForLiving().toString().toLowerCase();
 		this.levelOfProtection = pet.getLevelOfProtection();
 		this.extroversion = pet.isExtroversion();
 		this.introversion = pet.isIntroversion();

@@ -2,6 +2,7 @@ package sbnz.integracija.example.model;
 
 import java.util.List;
 
+import sbnz.integracija.example.dto.FormSinglePersonDTO;
 import sbnz.integracija.example.enums.PlaceForLiving;
 
 public class SinglPerson extends User{
@@ -97,6 +98,20 @@ public class SinglPerson extends User{
 	}
 	public SinglPerson(Long id, String firstName, String lastName, String email, String password, Boolean active) {
 		super(id, firstName, lastName, email, password, active);
+	}
+	public SinglPerson(FormSinglePersonDTO dto) {
+		super(dto.getLevelOfProtection(), dto.getPlaceForLiving(), dto.getHoursPerWeek(), dto.getPrice());
+		this.loveRunning = dto.isLoveRunning();
+		this.loveWalking = dto.isLoveWalking();
+		this.extroversion = dto.isExtroversion();
+		this.introversion = !dto.isExtroversion();
+		this.levelOfStressOnJob = dto.getLevelOfStressOnJob();
+		this.loveMystery = dto.isLoveMystery();
+		this.loveMeditation = dto.getLoveMeditation();
+		this.levelOfPatience = dto.getLevelOfPatience();
+		this.levelOfPersistance = dto.getLevelOfPersistance();
+		this.friendly = dto.getFriendly();
+		
 	}
 	
     

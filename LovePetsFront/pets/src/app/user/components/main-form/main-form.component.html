@@ -63,26 +63,13 @@
             >Select where would your pet live: </mat-label
           ><br />
           <select [(ngModel)]="this.placeForLiving">
-            <option *ngFor="let o of optionsPlace">
+            <option *ngFor="let o of optionsPlace" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
-          <!-- <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="inside">Inside of house (or flat)</option>
-              <option value="outside">In the garden</option>
-              <option value="insideOutside">
-                In the garden or inside of house (flat)
-              </option>
-            </select>
-          </mat-form-field> -->
+
           <mat-label class="labelColor">Activness</mat-label>
-          <!-- <mat-form-field appearance="fill">
-            <select matNativeControl required>
-              <option value="active">Active</option>
-              <option value="notActive">Not so active</option>
-            </select>
-          </mat-form-field> -->
+
           <select [(ngModel)]="this.activness">
             <option *ngFor="let o of optionsActive">
               {{ o.name }}
@@ -107,7 +94,6 @@
             (click)="submit()"
             [disabled]="firstPartQuestions.invalid"
           >
-            <!-- [disabled]="firstPartQuestions.invalid" -->
             Next
           </button>
         </mat-action-list>

@@ -1,5 +1,5 @@
 export interface Pet {
-  id: number;
+  id?: number;
   name: string;
   type: string;
   hoursPerWeek: number;
@@ -14,7 +14,7 @@ export interface Pet {
   introversion: boolean;
   levelOfStressOnJob: number;
   loveMystery: boolean;
-  loveMeditation: boolean;
+  loveMeditation: number;
   levelOfPatience: number;
   levelOfPersistance: number;
 }

@@ -18,8 +18,14 @@ public class UserService {
 
 	
 	public UserRegisterDTO register(UserRegisterDTO dto) {
-		
-		return dto;
+		User u = userRepository.findByUsername(dto.getUsername()).orElse(null);
+		if(u==null) {
+			User newUser = new User(dto);
+			userRepository.save(newUser);
+			dto.setPassword("");
+			return dto;
+		}
+		return null;
 	}
 	public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);

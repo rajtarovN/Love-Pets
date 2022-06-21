@@ -13,6 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import sbnz.integracija.example.dto.UserRegisterDTO;
 import sbnz.integracija.example.enums.PlaceForLiving;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -200,7 +201,24 @@ public class User implements UserDetails{
 
     public User() {
     }
-    @Override
+    public User(UserRegisterDTO dto) {
+		this.email = dto.getEmail();
+		this.username= dto.getUsername();
+		this.password = dto.getPassword();
+		this.firstName = dto.getName();
+		this.lastName = dto.getLastname();
+	}
+
+	public User(int levelOfProtection2, String placeForLiving2, int hoursPerWeek2, int price2) {
+		this.levelOfProtection = levelOfProtection2;
+		this.placeForLiving = placeForLiving2.equals("inside")? PlaceForLiving.INSIDE :
+									placeForLiving2.equals("outside")? PlaceForLiving.OUTSIDE : PlaceForLiving.INSIDE_OUTSIDE;
+		this.hoursPerWeek = hoursPerWeek2;
+		this.price = price2;
+		
+	}
+
+	@Override
     public boolean isAccountNonExpired() {
         return true;
     }

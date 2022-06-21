@@ -3,6 +3,7 @@ package sbnz.integracija.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import sbnz.integracija.example.dto.FormFamillyDTO;
 import sbnz.integracija.example.enums.PlaceForLiving;
 
 /**
@@ -123,6 +124,19 @@ public class Family extends User{
 		this.introvertEkstrovert = introvertEkstrovert;
 		this.sthNew = sthNew;
 		this.personalities = personalities;
+		this.personalPoints = new ArrayList<Integer>();
+	}
+
+	public Family(FormFamillyDTO dto) {
+		super(dto.getLevelOfProtection(), dto.getPlaceForLiving(), dto.getHoursPerWeek(), dto.getPrice());
+		this.childrenYears = dto.getChildrenYears();
+		this.goodInSport = dto.isGoodInSport();
+		this.physiclyActive = dto.isPhysiclyActive();
+		this.loveReserching = dto.isLoveReserching();
+		this.moreTime = dto.isMoreTime();
+		this.introvertEkstrovert = dto.isIntrovertEkstrovert();
+		this.sthNew = true;
+		this.personalities = 0;
 		this.personalPoints = new ArrayList<Integer>();
 	}
 

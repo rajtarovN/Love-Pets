@@ -3,6 +3,8 @@ import { MainForm } from '../../../shared/models/main-form';
 import { SinglePerson } from '../../../shared/models/single-person';
 import { Family } from '../../../shared/models/family';
 import { FormServiceService } from '../../services/form-service/form-service.service';
+import { FinishingDialogComponent } from '../../components/finishing-dialog/finishing-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -14,7 +16,10 @@ export class UserDashboardComponent implements OnInit {
   mainInfo: MainForm;
   famillyInfo: Family;
   singlePersonInfo: SinglePerson;
-  constructor(private formService: FormServiceService) {}
+  constructor(
+    private formService: FormServiceService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -32,6 +37,10 @@ export class UserDashboardComponent implements OnInit {
     console.log(eventData.form);
     this.singlePersonInfo = eventData.form;
     //todo slanje
+    this.singlePersonInfo.activeness = this.mainInfo.activeness;
+    this.singlePersonInfo.hoursPerWeek = this.mainInfo.hoursPerWeek;
+    this.singlePersonInfo.placeForLiving = this.mainInfo.placeForLiving;
+    this.singlePersonInfo.price = this.mainInfo.price;
     this.formService
       .sendSinglepersonForm(this.singlePersonInfo)
       .subscribe((res) => {
@@ -41,6 +50,18 @@ export class UserDashboardComponent implements OnInit {
   onFamillyFormInputed(eventData: { form: Family }) {
     console.log(eventData.form);
     this.famillyInfo = eventData.form;
-    //todo slanje
+
+    this.famillyInfo.activeness = this.mainInfo.activeness;
+    this.famillyInfo.hoursPerWeek = this.mainInfo.hoursPerWeek;
+    this.famillyInfo.placeForLiving = this.mainInfo.placeForLiving;
+    this.famillyInfo.price = this.mainInfo.price;
+
+    this.formService.sendFamilyForm(this.famillyInfo).subscribe((res) => {
+      console.log(res);
+      const dialogRef = this.dialog.open(FinishingDialogComponent, {
+        panelClass: 'my-class',
+        data: { pet: res },
+      });
+    });
   }
 }

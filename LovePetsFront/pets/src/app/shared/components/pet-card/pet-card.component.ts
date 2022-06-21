@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Pet } from '../../models/pet';
+import { PetsServiceService } from '../../services/pets-service.service';
 
 @Component({
   selector: 'app-pet-card',
@@ -8,7 +9,14 @@ import { Pet } from '../../models/pet';
 })
 export class PetCardComponent implements OnInit {
   @Input() pet: Pet;
-  constructor() {}
+
+  constructor(private petService: PetsServiceService) {}
 
   ngOnInit(): void {}
+
+  delete(): void {
+    this.petService.deletePet(this.pet.id + '').subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

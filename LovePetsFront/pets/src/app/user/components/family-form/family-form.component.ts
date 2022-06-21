@@ -20,45 +20,45 @@ export class FamilyFormComponent implements OnInit {
 
   @Output() filledForm = new EventEmitter<{ form: Family }>();
 
-  selectedIntrovertExtrovert: '';
-  selectedMoreTime: '';
-  selectedResersching: '';
-  selectedActivness: '';
-  selectedSport: '';
-  selectedYears: '';
+  selectedIntrovertExtrovert: undefined;
+  selectedMoreTime: undefined;
+  selectedResersching: undefined;
+  selectedActivness: undefined;
+  selectedSport: undefined;
+  selectedYears: -1;
 
   options = [
-    { name: 'Lower than 1 year', value: 'lowerThanOne' },
-    { name: '1', value: 'one' },
-    { name: '5', value: 'five' },
-    { name: '12', value: 'twelve' },
-    { name: 'moreThen15', value: 'More then 15 years' },
+    { name: 'Lower than 1 year', value: 0 },
+    { name: '1', value: 1 },
+    { name: '5', value: 5 },
+    { name: '12', value: 12 },
+    { name: 'moreThen15', value: 15 },
   ];
   optionsActivness = [
-    { name: 'Active', value: 'active' },
-    { name: 'Not so active', value: 'notActive' },
+    { name: 'Active', value: true },
+    { name: 'Not so active', value: false },
   ];
   optionsSport = [
-    { name: 'Good (Love runing for example or play something)', value: 'good' },
+    { name: 'Good (Love runing for example or play something)', value: true },
     {
       name: 'Not so good (Not relly active or not intrested in sport)',
-      value: 'bad',
+      value: false,
     },
   ];
   optionsRes = [
     {
       name: 'Love reserching (Love to explore new places, animals, science)',
-      value: 'love',
+      value: true,
     },
-    { name: 'Not really intrested in reserching', value: 'dontLove' },
+    { name: 'Not really intrested in reserching', value: false },
   ];
   optionsMoreTime = [
-    { name: 'Yess', value: 'yess' },
-    { name: 'No', value: 'no' },
+    { name: 'Yess', value: true },
+    { name: 'No', value: false },
   ];
   optionsType = [
-    { name: 'Introvert', value: 'introvert' },
-    { name: 'Extrovert', value: 'ekstrovert' },
+    { name: 'Introvert', value: false },
+    { name: 'Extrovert', value: true },
   ];
 
   @Input() mainForm: MainForm;
@@ -75,18 +75,11 @@ export class FamilyFormComponent implements OnInit {
       this.selectedResersching === undefined ||
       this.selectedActivness === undefined ||
       this.selectedSport === undefined ||
-      this.selectedYears === undefined
+      this.selectedYears == -1
     ) {
       console.log('not good');
     } else {
-      if (
-        this.selectedIntrovertExtrovert === '' ||
-        this.selectedMoreTime === '' ||
-        this.selectedResersching === '' ||
-        this.selectedActivness === '' ||
-        this.selectedSport === '' ||
-        this.selectedYears === ''
-      ) {
+      if (this.selectedYears == -1) {
         console.log('los unos');
       } else {
         var family: Family = {

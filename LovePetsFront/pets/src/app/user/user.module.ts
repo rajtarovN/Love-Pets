@@ -11,6 +11,7 @@ import { FamilyFormComponent } from './components/family-form/family-form.compon
 //import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { FinishingDialogComponent } from './components/finishing-dialog/finishing-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     SinglePersonFormComponent,
     FamilyFormComponent,
     UserDashboardComponent,
+    FinishingDialogComponent,
   ],
   imports: [
     CommonModule,

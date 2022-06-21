@@ -30,10 +30,14 @@ export class UsesrServiceService {
 
   register(auth: UserRegister): Observable<any> {
     //auth,
-    const res = this.http.post<any>('http://localhost:8080/api/reg', '1', {
-      headers: this.headers,
-      responseType: 'text' as 'json',
-    });
+    const res = this.http.post<any>(
+      'http://localhost:8080/api/register',
+      auth,
+      {
+        headers: this.headers,
+        responseType: 'text' as 'json',
+      }
+    );
     console.log(res, 'aaa');
     return res;
   }

@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-content>
     <h3>{{ pet.name }}</h3>
-
+    <button (click)="this.delete()"><mat-icon>delete</mat-icon></button>
     <p><mat-icon>pets</mat-icon>Type: {{ pet.type }}</p>
 
     <p>

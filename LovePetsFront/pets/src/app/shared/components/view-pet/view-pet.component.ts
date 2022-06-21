@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pet } from '../../models/pet';
+import { PetsServiceService } from '../../services/pets-service.service';
 
 @Component({
   selector: 'app-view-pet',
@@ -9,49 +10,58 @@ import { Pet } from '../../models/pet';
 export class ViewPetComponent implements OnInit {
   pet: Pet;
   pets: Pet[];
+  options = [
+    { name: 'Lower than 1 year', value: 'lowerThanOne' },
+    { name: '1', value: 'one' },
+    { name: '5', value: 'five' },
+    { name: '12', value: 'twelve' },
+    { name: 'moreThen15', value: 'More then 15 years' },
+  ];
+  optionsActivness = [
+    { name: 'Active', value: 'active' },
+    { name: 'Not so active', value: 'notActive' },
+  ];
+  optionsSport = [
+    { name: 'Good (Love runing for example or play something)', value: 'good' },
+    {
+      name: 'Not so good (Not relly active or not intrested in sport)',
+      value: 'bad',
+    },
+  ];
+  optionsRes = [
+    {
+      name: 'Love reserching (Love to explore new places, animals, science)',
+      value: 'love',
+    },
+    { name: 'Not really intrested in reserching', value: 'dontLove' },
+  ];
 
-  constructor() {
-    this.pet = {
-      id: 1,
-      name: 'zlatni retriver',
-      type: 'pas',
-      hoursPerWeek: 12,
-      price: 12,
-      adoptableOnKids: 12,
-      minYears: 21,
-      levelOfActivity: 21,
-      degreeOfMolting: 12,
-      placeForLiving: 'House',
-      levelOfProtection: 12,
-      extroversion: true,
-      introversion: false,
-      levelOfStressOnJob: 12,
-      loveMystery: true,
-      loveMeditation: true,
-      levelOfPatience: 2,
-      levelOfPersistance: 2,
-    };
-    var pet2 = {
-      id: 1,
-      name: 'zlatni retriver',
-      type: 'pas',
-      hoursPerWeek: 12,
-      price: 12,
-      adoptableOnKids: 12,
-      minYears: 21,
-      levelOfActivity: 21,
-      degreeOfMolting: 12,
-      placeForLiving: 'House',
-      levelOfProtection: 12,
-      extroversion: true,
-      introversion: false,
-      levelOfStressOnJob: 12,
-      loveMystery: true,
-      loveMeditation: true,
-      levelOfPatience: 2,
-      levelOfPersistance: 2,
-    };
-    this.pets = [this.pet, pet2, pet2, this.pet];
+  optionsPlace = [
+    { name: 'Inside of house (or flat)', value: 'inside' },
+    { name: 'In the garden', value: 'outside' },
+    {
+      name: ' In the garden or inside of house (flat)',
+      value: 'insideOutside',
+    },
+  ];
+  optionsActive = [
+    { name: 'Active', value: 'active' },
+    { name: 'not so active', value: 'notActive' },
+  ];
+  optionsYN = [
+    { name: 'Yess', value: 'yess' },
+    { name: 'No', value: 'no' },
+  ];
+  optionsType = [
+    { name: 'Extrovert', value: 'extrovert' },
+    { name: 'Introvert', value: 'introvert' },
+  ];
+
+  constructor(private petService: PetsServiceService) {
+    this.petService.getPets().subscribe((res) => {
+      console.log(res);
+      this.pets = res;
+    });
   }
 
   ngOnInit(): void {}

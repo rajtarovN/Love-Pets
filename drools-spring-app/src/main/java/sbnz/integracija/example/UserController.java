@@ -27,6 +27,7 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = "application/json")
 	@CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<UserRegisterDTO> register(@RequestBody UserRegisterDTO dto) {
+		System.out.println(dto.getEmail());
         return new ResponseEntity<>(this.userService.register(dto), HttpStatus.OK);
     }
 }
