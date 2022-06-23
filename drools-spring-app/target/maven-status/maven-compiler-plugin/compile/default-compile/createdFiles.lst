@@ -2,7 +2,9 @@ sbnz\integracija\example\dto\UserLoginDTO.class
 sbnz\integracija\example\model\Family.class
 sbnz\integracija\repository\UserRepository.class
 sbnz\integracija\example\model\SinglPerson.class
+sbnz\integracija\example\model\Location.class
 sbnz\integracija\example\PetService.class
+sbnz\integracija\example\dto\PetNamesDTO.class
 sbnz\integracija\example\model\Pet.class
 sbnz\integracija\example\dto\FormFamillyDTO.class
 sbnz\integracija\example\dto\FormSinglePersonDTO.class

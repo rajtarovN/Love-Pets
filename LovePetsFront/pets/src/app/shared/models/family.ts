@@ -11,4 +11,8 @@ export interface Family {
   loveReserching: boolean;
   moreTime: boolean;
   introvertEkstrovert: boolean;
+  liveWith: string[];
+  alergic: string[];
+  afraidOf: string[];
+  wantedPet: string;
 }

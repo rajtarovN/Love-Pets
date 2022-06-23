@@ -8,6 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { Family } from '../../../shared/models/family';
 import { MainForm } from '../../../shared/models/main-form';
+import { MatDialog } from '@angular/material/dialog';
+import { ChoosePetComponent } from '../choose-pet/choose-pet.component';
 //tultip
 
 @Component({
@@ -17,6 +19,7 @@ import { MainForm } from '../../../shared/models/main-form';
 })
 export class FamilyFormComponent implements OnInit {
   secondPartQuestions: FormGroup;
+  choosenPet: string = '';
 
   @Output() filledForm = new EventEmitter<{ form: Family }>();
 
@@ -63,7 +66,11 @@ export class FamilyFormComponent implements OnInit {
 
   @Input() mainForm: MainForm;
 
-  constructor(private fb: FormBuilder, public router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    public router: Router,
+    public dialog: MatDialog
+  ) {
     this.secondPartQuestions = this.fb.group({});
   }
 
@@ -82,6 +89,7 @@ export class FamilyFormComponent implements OnInit {
       if (this.selectedYears == -1) {
         console.log('los unos');
       } else {
+        //let afraid = this.lis.filter((item) => item.checked);
         var family: Family = {
           activeness: this.selectedActivness,
           childrenYears: this.selectedYears,
@@ -90,10 +98,30 @@ export class FamilyFormComponent implements OnInit {
           physiclyActive: this.selectedActivness,
           loveReserching: this.selectedResersching,
           introvertEkstrovert: this.selectedIntrovertExtrovert,
+          liveWith: [],
+          afraidOf: [],
+          alergic: [],
+          wantedPet: this.choosenPet,
         };
         console.log(family);
         this.filledForm.emit({ form: family });
       }
     }
+  }
+  choosePet(): void {
+    const dialogRef = this.dialog.open(ChoosePetComponent, {
+      width: '250px',
+      height: '300px',
+      // background: 'white',
+      autoFocus: false,
+      data: { a: 'A' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
+        console.log(result);
+        this.choosenPet = result;
+        this.submit();
+      }
+    });
   }
 }

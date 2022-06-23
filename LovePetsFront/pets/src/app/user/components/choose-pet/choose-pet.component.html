@@ -1,0 +1,11 @@
+<div>
+  <mat-label class="labelColor">Select pet which you want: </mat-label><br />
+
+  <select [(ngModel)]="this.selectedPet">
+    <option *ngFor="let o of options" value="{{ o.value }}">
+      {{ o.name }}
+    </option>
+  </select>
+  <button (click)="this.submit()">Next</button>
+  <button (click)="this.close()">Close</button>
+</div>

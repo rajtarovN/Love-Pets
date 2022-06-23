@@ -12,6 +12,7 @@ import { FamilyFormComponent } from './components/family-form/family-form.compon
 import { ToastrModule } from 'ngx-toastr';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FinishingDialogComponent } from './components/finishing-dialog/finishing-dialog.component';
+import { ChoosePetComponent } from './components/choose-pet/choose-pet.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FinishingDialogComponent } from './components/finishing-dialog/finishin
     FamilyFormComponent,
     UserDashboardComponent,
     FinishingDialogComponent,
+    ChoosePetComponent,
   ],
   imports: [
     CommonModule,

@@ -39,4 +39,28 @@ export class FormServiceService {
     );
     return res;
   }
+  backwardFamily(form: Family): Observable<any> {
+    const res = this.http.post<Family>(
+      'http://localhost:8080/api/familyBackward/' + form.wantedPet,
+      form,
+      {
+        headers: this.headers,
+        responseType: 'json',
+      }
+    );
+    console.log(res, 'ovde gledajjj');
+    return res;
+  }
+  backwardSinglePerson(form: SinglePerson): Observable<any> {
+    const res = this.http.post<Family>(
+      'http://localhost:8080/api/singleBackward/' + form.wantedPet,
+      form,
+      {
+        headers: this.headers,
+        responseType: 'json',
+      }
+    );
+    console.log(res, 'ovde gledajjj');
+    return res;
+  }
 }

@@ -15,4 +15,10 @@ export interface SinglePerson {
   levelOfPatience: number;
   levelOfPersistance: number;
   friendly: number;
+
+  liveWith: string[];
+  alergic: string[];
+  afraidOf: string[];
+
+  wantedPet: string;
 }

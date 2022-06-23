@@ -27,8 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/purple-green.css"
+              }
             ],
+            
             "scripts": []
           },
           "configurations": {

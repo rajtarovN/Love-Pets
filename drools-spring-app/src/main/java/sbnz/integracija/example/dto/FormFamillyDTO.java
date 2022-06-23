@@ -1,5 +1,7 @@
 package sbnz.integracija.example.dto;
 
+import java.util.List;
+
 public class FormFamillyDTO {
 	  private boolean activeness;
 	  private int levelOfProtection;
@@ -13,6 +15,10 @@ public class FormFamillyDTO {
 	  private  boolean loveReserching;
 	  private boolean moreTime ;
 	  private boolean introvertEkstrovert ;
+	  
+	  private List<String> liveWith;
+	  private List<String> alergic;
+	  private List<String> afraidOf;
 	public boolean isActiveness() {
 		return activeness;
 	}
@@ -79,9 +85,29 @@ public class FormFamillyDTO {
 	public void setIntrovertEkstrovert(boolean introvertEkstrovert) {
 		this.introvertEkstrovert = introvertEkstrovert;
 	}
+	
+	public List<String> getLiveWith() {
+		return liveWith;
+	}
+	public void setLiveWith(List<String> liveWith) {
+		this.liveWith = liveWith;
+	}
+	public List<String> getAlergic() {
+		return alergic;
+	}
+	public void setAlergic(List<String> alergic) {
+		this.alergic = alergic;
+	}
+	public List<String> getAfraidOf() {
+		return afraidOf;
+	}
+	public void setAfraidOf(List<String> afraidOf) {
+		this.afraidOf = afraidOf;
+	}
+	
 	public FormFamillyDTO(boolean activeness, int levelOfProtection, int hoursPerWeek, int price, String placeForLiving,
 			int childrenYears, boolean goodInSport, boolean physiclyActive, boolean loveReserching, boolean moreTime,
-			boolean introvertEkstrovert) {
+			boolean introvertEkstrovert, List<String> liveWith, List<String> alergic, List<String> afraidOf) {
 		super();
 		this.activeness = activeness;
 		this.levelOfProtection = levelOfProtection;
@@ -94,6 +120,9 @@ public class FormFamillyDTO {
 		this.loveReserching = loveReserching;
 		this.moreTime = moreTime;
 		this.introvertEkstrovert = introvertEkstrovert;
+		this.liveWith = liveWith;
+		this.alergic = alergic;
+		this.afraidOf = afraidOf;
 	}
 	public FormFamillyDTO() {
 		super();

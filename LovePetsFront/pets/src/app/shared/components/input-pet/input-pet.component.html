@@ -280,6 +280,21 @@
             </option>
           </select>
         </div>
+        <section class="section2">
+          <div>
+            Chose pets which you live with:<br />
+            <span *ngFor="let item of listLiveWith">
+              <input
+                class="checkBox"
+                type="checkbox"
+                [(ngModel)]="item.checked"
+                (change)="changeCheckbox($event)"
+              />
+              <img mat-icon [src]="item.img" class="side-icon" />{{ item.type }}
+              <br />
+            </span>
+          </div>
+        </section>
 
         <mat-action-list>
           <button

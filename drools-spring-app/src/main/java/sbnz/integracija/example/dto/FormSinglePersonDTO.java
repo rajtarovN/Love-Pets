@@ -1,5 +1,7 @@
 package sbnz.integracija.example.dto;
 
+import java.util.List;
+
 public class FormSinglePersonDTO {
 	private boolean activeness;
 	  private int levelOfProtection;
@@ -17,6 +19,10 @@ public class FormSinglePersonDTO {
 	  private int levelOfPatience;
 	  private int levelOfPersistance;
 	  private int friendly;
+	  
+	  private List<String> liveWith;
+	  private List<String> alergic;
+	  private List<String> afraidOf;
 	public boolean isActiveness() {
 		return activeness;
 	}
@@ -107,10 +113,32 @@ public class FormSinglePersonDTO {
 	public void setFriendly(int friendly) {
 		this.friendly = friendly;
 	}
+	
+	public List<String> getLiveWith() {
+		return liveWith;
+	}
+	public void setLiveWith(List<String> liveWith) {
+		this.liveWith = liveWith;
+	}
+	public List<String> getAlergic() {
+		return alergic;
+	}
+	public void setAlergic(List<String> alergic) {
+		this.alergic = alergic;
+	}
+	public List<String> getAfraidOf() {
+		return afraidOf;
+	}
+	public void setAfraidOf(List<String> afraidOf) {
+		this.afraidOf = afraidOf;
+	}
+	public FormSinglePersonDTO() {
+		super();
+	}
 	public FormSinglePersonDTO(boolean activeness, int levelOfProtection, int hoursPerWeek, int price,
 			String placeForLiving, boolean loveRunning, boolean loveWalking, boolean extroversion, boolean introversion,
 			int levelOfStressOnJob, boolean loveMystery, int loveMeditation, int levelOfPatience,
-			int levelOfPersistance, int friendly) {
+			int levelOfPersistance, int friendly, List<String> liveWith, List<String> alergic, List<String> afraidOf) {
 		super();
 		this.activeness = activeness;
 		this.levelOfProtection = levelOfProtection;
@@ -127,9 +155,9 @@ public class FormSinglePersonDTO {
 		this.levelOfPatience = levelOfPatience;
 		this.levelOfPersistance = levelOfPersistance;
 		this.friendly = friendly;
-	}
-	public FormSinglePersonDTO() {
-		super();
+		this.liveWith = liveWith;
+		this.alergic = alergic;
+		this.afraidOf = afraidOf;
 	}
 	  
 	  

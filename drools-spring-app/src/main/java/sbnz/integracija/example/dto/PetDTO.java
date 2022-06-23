@@ -25,6 +25,7 @@ public class PetDTO {
 	private int loveMeditation;
 	private int levelOfPatience;
 	private int levelOfPersistance;
+	private List<String> notLiveWith;
 	public Long getId() {
 		return id;
 	}

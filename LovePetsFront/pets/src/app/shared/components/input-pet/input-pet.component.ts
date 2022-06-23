@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { Pet } from '../../models/pet';
 import { PetsServiceService } from '../../services/pets-service.service';
+import { ElementForList } from '../../models/ElementForList';
 
 @Component({
   selector: 'app-input-pet',
@@ -42,6 +43,8 @@ export class InputPetComponent implements OnInit {
   selectedSport: '';
   selectedYears: number = -1;
   placeForLiving: string = '';
+
+  listLiveWith: ElementForList[] = [];
 
   optionsPlace = [
     { name: 'Inside of house (or flat)', value: 'inside' },
@@ -116,8 +119,48 @@ export class InputPetComponent implements OnInit {
       degreeOfMolting: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
     });
+    this.listLiveWith = [
+      {
+        id: 1,
+        type: 'dog',
+        checked: false,
+        img: 'assets/images/dog.png',
+      },
+      {
+        id: 2,
+        type: 'bird',
+        checked: false,
+        img: 'assets/images/bird.png',
+      },
+      {
+        id: 3,
+        type: 'cat',
+        checked: false,
+        img: 'assets/images/cat.png',
+      },
+      {
+        id: 4,
+        type: 'snake',
+        checked: false,
+        img: 'assets/images/snake.png',
+      },
+      {
+        id: 5,
+        type: 'bummy',
+        checked: false,
+        img: 'assets/images/bunny.png',
+      },
+      {
+        id: 4,
+        type: 'mouse',
+        checked: false,
+        img: 'assets/images/mouse.png',
+      },
+    ];
   }
   submit(): void {
+    let listChoosenPets = this.listLiveWith.filter((item) => item.type);
+
     var pet: Pet = {
       name: this.name,
       type: this.selectedType,
@@ -136,6 +179,7 @@ export class InputPetComponent implements OnInit {
       loveMeditation: this.loveMeditation,
       levelOfPatience: this.levelOfPatience,
       levelOfPersistance: this.levelOfPersistance,
+      notLiveWith: this.filterList(listChoosenPets),
     };
     this.petService.addPet(pet).subscribe((res) => {
       console.log(res);
@@ -147,5 +191,20 @@ export class InputPetComponent implements OnInit {
         alert('Successfuly added pet');
       }
     });
+  }
+
+  get result() {
+    return this.listLiveWith.filter((item) => item.checked);
+  }
+
+  changeCheckbox(event: Event) {
+    console.log(event.target);
+  }
+  filterList(newList: ElementForList[]): string[] {
+    let lista: string[] = [];
+    for (let i = 0; i < newList.length; i++) {
+      lista.push(newList[i].type);
+    }
+    return lista;
   }
 }

@@ -62,8 +62,27 @@ public class PetController {
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
 	@CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Object> addPet(@PathVariable Long id) {
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
 		
         return new ResponseEntity<>(this.petService.delete(id), HttpStatus.OK);
+    }
+	@RequestMapping(value = "/getNames", method = RequestMethod.GET, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> getAllNames() {
+		
+        return new ResponseEntity<>(this.petService.getNames(), HttpStatus.OK);
+    }
+	@RequestMapping(value = "/familyBackward/{id}", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> familyBackward(@PathVariable Long id, @RequestBody FormFamillyDTO dto) {
+		
+        return new ResponseEntity<>(this.petService.isPetGoodForFamilly(id,dto),HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/singleBackward/{id}", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Object> singlPersonBackward(@PathVariable Long id, @RequestBody SinglePersonDTO dto) {
+		
+        return new ResponseEntity<>(this.petService.isPetGoodForSinglePerson(id,dto), HttpStatus.OK);
     }
 }

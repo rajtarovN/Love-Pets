@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SinglePerson } from '../../../shared/models/single-person';
+import { ChoosePetComponent } from '../choose-pet/choose-pet.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-single-person-form',
@@ -23,6 +25,8 @@ export class SinglePersonFormComponent implements OnInit {
   selectedType: string = '';
   selectedMystery: string = '';
 
+  choosenPet: string = '';
+
   options = [
     { name: 'Yess', value: 'yess' },
     { name: 'No', value: 'no' },
@@ -32,7 +36,7 @@ export class SinglePersonFormComponent implements OnInit {
     { name: 'Introvert', value: 'introvert' },
   ];
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.secondPartQuestions = new FormGroup({
@@ -61,8 +65,28 @@ export class SinglePersonFormComponent implements OnInit {
       loveRunning: this.selectedRunning === 'Yess',
       loveWalking: this.selectedWalking === 'Yess',
       loveMeditation: this.loveMeditation,
+      afraidOf: [],
+      alergic: [],
+      liveWith: [],
+      wantedPet: this.choosenPet,
     };
     console.log('submit');
     this.filledForm.emit({ form: newForm });
+  }
+  choosePet(): void {
+    const dialogRef = this.dialog.open(ChoosePetComponent, {
+      width: '250px',
+      height: '300px',
+      // background: 'white',
+      autoFocus: false,
+      data: { a: 'A' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != null) {
+        console.log(result);
+        this.choosenPet = result;
+        this.submit();
+      }
+    });
   }
 }

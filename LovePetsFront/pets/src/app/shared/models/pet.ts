@@ -17,4 +17,5 @@ export interface Pet {
   loveMeditation: number;
   levelOfPatience: number;
   levelOfPersistance: number;
+  notLiveWith: string[];
 }

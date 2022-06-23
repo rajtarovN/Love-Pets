@@ -5,4 +5,8 @@ export interface MainForm {
   price: number;
   placeForLiving: string;
   type?: string;
+
+  liveWith: string[];
+  alergic: string[];
+  afraidOf: string[];
 }

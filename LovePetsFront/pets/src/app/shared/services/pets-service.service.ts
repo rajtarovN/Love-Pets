@@ -40,4 +40,11 @@ export class PetsServiceService {
     });
     return res;
   }
+  getNames(): Observable<any> {
+    const res = this.http.get<any>(`http://localhost:8080/api/getNames`, {
+      headers: this.headers,
+      responseType: 'json',
+    });
+    return res;
+  }
 }

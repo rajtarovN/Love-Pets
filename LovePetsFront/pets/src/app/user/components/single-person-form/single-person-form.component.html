@@ -13,58 +13,59 @@
           <mat-label class="labelColor"
             >Input level of stress of your job from 0-5: </mat-label
           ><br />
-          <mat-form-field id="levelOfStressOnJob" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="levelOfStressOnJob"
-              formControlName="levelOfStressOnJob"
-              required
-              [(ngModel)]="this.levelOfStressOnJob"
-            />
-          </mat-form-field>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfStressOnJob"
+            formControlName="levelOfStressOnJob"
+            required
+            [(ngModel)]="this.levelOfStressOnJob"
+          />
 
           <mat-label class="labelColor"
             >Input how much do you love meditation from 0-5: </mat-label
           ><br />
-          <mat-form-field id="loveMeditation" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="loveMeditation"
-              formControlName="loveMeditation"
-              required
-              [(ngModel)]="this.loveMeditation"
-            />
-          </mat-form-field>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="loveMeditation"
+            formControlName="loveMeditation"
+            required
+            [(ngModel)]="this.loveMeditation"
+          />
 
           <mat-label class="labelColor"
             >Input your level of patience from 0-5: </mat-label
           ><br />
-          <mat-form-field id="levelOfPatience" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="levelOfPatience"
-              formControlName="levelOfPatience"
-              required
-              [(ngModel)]="this.levelOfPatience"
-            />
-          </mat-form-field>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfPatience"
+            formControlName="levelOfPatience"
+            required
+            [(ngModel)]="this.levelOfPatience"
+          />
 
           <mat-label class="labelColor"
             >Input your level of persistence from 0-5: </mat-label
           ><br />
-          <mat-form-field id="levelOfPersistance" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="levelOfPersistance"
-              formControlName="levelOfPersistance"
-              required
-              [(ngModel)]="this.levelOfPersistance"
-            />
-          </mat-form-field>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfPersistance"
+            formControlName="levelOfPersistance"
+            required
+            [(ngModel)]="this.levelOfPersistance"
+          />
+
           <mat-label class="labelColor">Select do you love mystery: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedMystery">
@@ -76,16 +77,16 @@
           <mat-label class="labelColor"
             >Input your level of friendlyness from 0-5: </mat-label
           ><br />
-          <mat-form-field id="friendly" appearance="standard">
-            <input
-              matInput
-              type="number"
-              id="friendly"
-              formControlName="friendly"
-              required
-              [(ngModel)]="this.friendly"
-            />
-          </mat-form-field>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="friendly"
+            formControlName="friendly"
+            required
+            [(ngModel)]="this.friendly"
+          />
         </form>
 
         <div class="df2">
@@ -133,8 +134,10 @@
           >
             <!-- [disabled]="firstPartQuestions.invalid" -->
             Next
-          </button>
-        </mat-action-list>
+          </button> </mat-action-list
+        ><button mat-flat-button (click)="this.choosePet()" tabindex="-1">
+          Choose pet and see is it good for you
+        </button>
       </div>
     </mat-card-content>
   </mat-card>

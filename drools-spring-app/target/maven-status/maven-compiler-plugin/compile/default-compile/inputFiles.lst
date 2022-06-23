@@ -1,5 +1,6 @@
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\dto\FormFamillyDTO.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\PetService.java
+D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\model\Location.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\SampleHomeController.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\PetController.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\SampleAppService.java
@@ -9,6 +10,7 @@ D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\r
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\security\RestAuthenticationEntryPoint.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\security\EntryPointUnauthorizedHandler.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\dto\UserRegisterDTO.java
+D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\dto\PetNamesDTO.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\configuration\WebConfig.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\dto\UserLoginDTO.java
 D:\faks\drools-spring\drools-spring-app\src\main\java\sbnz\integracija\example\facts\Item.java
