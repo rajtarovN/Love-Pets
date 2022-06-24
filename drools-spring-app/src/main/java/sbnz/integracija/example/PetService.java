@@ -37,7 +37,6 @@ public class PetService {
 
 	@Autowired
 	public PetService(KieContainer kieContainer, PetRepository repo) {
-//		log.info("Initialising a new example session.");
 		this.kieContainer = kieContainer;
 		this.petRepository = repo;
 	}
@@ -52,7 +51,8 @@ public class PetService {
 		this.petRepository.save(pet);
 		return dto;
 	}
-	public void parseList(Pet pet) { //todo pozovi
+	
+	public void parseList(Pet pet) { 
 		List<String> names = new ArrayList<>();
 		for(String s: pet.getNotLiveWith().split(" ")) {
 			names.add(s);
@@ -61,9 +61,7 @@ public class PetService {
 	}
 
 	public Object getAll() {
-//		Pet pet2 = new Pet((long)2, "golden fish", "fish", 12, 400, 5, 0,new ArrayList<String>(),5, 4, PlaceForLiving.INSIDE,3, false,3,false, 3,3, 1);
-//		ArrayList<Pet> p =new ArrayList<Pet>();
-//		p.add(pet2);
+
 		return this.petRepository.findAll();
 	}
 
@@ -75,13 +73,9 @@ public class PetService {
 
 		Family f = new Family(dto);
 		f.setId(0L);
-//		Family f = new Family((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, alergic, 400, 12,PlaceForLiving.INSIDE_OUTSIDE, afraid,
-//				liveWith,3, true,true,true,true,true,true,0);
 		
-		Pet pet1 = new Pet((long) 1, "golden retriver", "dog", 12, 400, 9, 3, new ArrayList<String>(), 5, 4,
-				PlaceForLiving.INSIDE_OUTSIDE, 3, true, 3, true, 3, 3, 1);
-		Pet pet2 = new Pet((long) 2, "golden fish", "fish", 12, 400, 5, 0, new ArrayList<String>(), 5, 4,
-				PlaceForLiving.INSIDE, 3, false, 3, false, 3, 3, 1);
+		List<Pet> pets = this.petRepository.findAll();
+		
 
 		Helper h = new Helper();
 
@@ -90,57 +84,56 @@ public class PetService {
 		List<Pet> recomedationPets = new ArrayList<Pet>();
 
 		kieSession.insert(f);
-		kieSession.insert(pet1);
-		kieSession.insert(pet2);
 		kieSession.insert(h);
-
-		kieSession.getAgenda().getAgendaGroup("childrens-personalities").setFocus();
-		kieSession.fireAllRules();
-
-		Pet pet = (Pet) kieSession.getGlobal("perfectPetForChildren");
-		System.out.println(h.getText());
-		System.out.println(pet);
-		return pet;
+		ArrayList<Pet> goodPets = new ArrayList<Pet>();
+		for(Pet p: pets) {
+			this.parseList(p);
+			kieSession.insert(p);
+			
+			////
+			kieSession.getAgenda().getAgendaGroup("childrens-personalities").setFocus();
+			kieSession.fireAllRules();
+			
+			kieSession.getAgenda().getAgendaGroup("final-rule").setFocus();
+			kieSession.fireAllRules();
+			Pet pet = (Pet) kieSession.getGlobal("perfectPetForChildren");
+			///
+			goodPets.add(pet);	
+		}
+		return goodPets.get(0);
 	}
 
 	public Object findBestPetForSinglePerson(FormSinglePersonDTO dto) {
 
-		// SinglPerson u = new SinglPerson((long)1, "Milica", "Milic",
-		// "milica@gmail.com", "123", true, true, true, true, 3, true, 3, 3, 1, 4, 3,
-		// notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
-
 		SinglPerson u = new SinglPerson(dto);
-		u.setAfraidOf(new ArrayList<String>());
-		u.setAlergicOn(new ArrayList<String>());
-		u.setLiveWith(new ArrayList<String>());
-		Pet pet1 = new Pet((long) 1, "golden retriver", "dog", 12, 400, 5, 3, new ArrayList<String>(), 3, 4,
-				PlaceForLiving.INSIDE_OUTSIDE, 3, true, 3, true, 3, 3, 1);
-
-		Pet pet2 = new Pet((long) 2, "golden fish", "fish", 12, 400, 5, 0, new ArrayList<String>(), 3, 4,
-				PlaceForLiving.INSIDE, 3, false, 3, false, 3, 3, 1);
-
+		List<Pet> pets = this.petRepository.findAll();
 		Helper h = new Helper();
-
 		KieSession kieSession = kieContainer.newKieSession();
+		kieSession.insert(h);
 		List<Pet> recomedationPets = new ArrayList<Pet>();
 		kieSession.insert(u);
-		kieSession.insert(pet1);
-		kieSession.insert(h);
+		
+		ArrayList<Pet> goodPets = new ArrayList<Pet>();
+		for(Pet p: pets) {
+			this.parseList(p);
+			kieSession.insert(p);
+			
+			//
+			kieSession.getAgenda().getAgendaGroup("user-personality").setFocus();
+			kieSession.fireAllRules();
+			kieSession.getAgenda().getAgendaGroup("user-activity").setFocus();
+			kieSession.fireAllRules();
 
-		kieSession.getAgenda().getAgendaGroup("user-personality").setFocus();
-		kieSession.fireAllRules();
-		kieSession.getAgenda().getAgendaGroup("user-activity").setFocus();
-		kieSession.fireAllRules();
+			kieSession.getAgenda().getAgendaGroup("prepare-perfect-pet").setFocus();
+			kieSession.fireAllRules();
 
-		kieSession.getAgenda().getAgendaGroup("prepare-perfect-pet").setFocus();
-		kieSession.fireAllRules();
-
-		kieSession.getAgenda().getAgendaGroup("perfect-pet").setFocus();
-		kieSession.fireAllRules();
-		Pet pet = (Pet) kieSession.getGlobal("perfectPet");
-		System.out.println(h.getText());
-		System.out.println(pet);
-		return pet;
+			kieSession.getAgenda().getAgendaGroup("perfect-pet").setFocus();
+			kieSession.fireAllRules();
+			Pet pet = (Pet) kieSession.getGlobal("perfectPet");
+			goodPets.add(pet);
+		}
+		System.out.println(goodPets.get(0));
+		return goodPets.get(0);
 	}
 
 	public boolean delete(Long id) {
@@ -154,15 +147,15 @@ public class PetService {
 	}
 
 	public Object getNames() {
-		//List<Pet> pets= this.petRepository.findAll();
-		Pet pet1 = new Pet((long) 1, "golden retriver", "dog", 12, 400, 5, 3, new ArrayList<String>(), 3, 4,
-				PlaceForLiving.INSIDE_OUTSIDE, 3, true, 3, true, 3, 3, 1);
-
-		Pet pet2 = new Pet((long) 2, "golden fish", "fish", 12, 400, 5, 0, new ArrayList<String>(), 3, 4,
-				PlaceForLiving.INSIDE, 3, false, 3, false, 3, 3, 1);
-		List<Pet> pets= new ArrayList<>();
-		pets.add(pet1);
-		pets.add(pet2);
+		List<Pet> pets= this.petRepository.findAll();
+//		Pet pet1 = new Pet((long) 1, "golden retriver", "dog", 12, 400, 5, 3, new ArrayList<String>(), 3, 4,
+//				PlaceForLiving.INSIDE_OUTSIDE, 3, true, 3, true, 3, 3, 1);
+//
+//		Pet pet2 = new Pet((long) 2, "golden fish", "fish", 12, 400, 5, 0, new ArrayList<String>(), 3, 4,
+//				PlaceForLiving.INSIDE, 3, false, 3, false, 3, 3, 1);
+//		List<Pet> pets= new ArrayList<>();
+//		pets.add(pet1);
+//		pets.add(pet2);
 		ArrayList<PetNamesDTO> names =new ArrayList<>();
 		for(Pet p: pets) {
 			names.add(new PetNamesDTO(p));
@@ -238,25 +231,26 @@ public class PetService {
 
     }
 
-	public Object isPetGoodForSinglePerson(Long id, SinglePersonDTO dto ) {//
-		List<String> notAll = new ArrayList<String>();
-    	//notAll.add("a");
-    	List<String> alergic = new ArrayList<String>();
-    	//alergic.add("dog");
-    	List<String> afraid = new ArrayList<String>();
-    	//afraid.add("a");
-    	List<String> liveWith = new ArrayList<String>();
+	public Object isPetGoodForSinglePerson(Long id, FormSinglePersonDTO dto ) {//
+//		List<String> notAll = new ArrayList<String>();
+//    	//notAll.add("a");
+//    	List<String> alergic = new ArrayList<String>();
+//    	//alergic.add("dog");
+//    	List<String> afraid = new ArrayList<String>();
+//    	//afraid.add("a");
+//    	List<String> liveWith = new ArrayList<String>();
     	//liveWith.add("dog");
     	
     	KieSession ksession = kieContainer.newKieSession();
-        SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, true, true, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
-		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,3, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
-		
+//        SinglPerson u = new SinglPerson((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, true, true, true, 3, true, 3, 3, 1, 4, 3, notAll, 400, 12, PlaceForLiving.INSIDE_OUTSIDE, alergic, afraid);
+//		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 5, 3,new ArrayList<String>()  ,3, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+    	SinglPerson u = new SinglPerson(dto);
+    	Optional<Pet> pet1 = this.petRepository.findById(id);
 		Helper h = new Helper();
 		
         ksession.insert( u );
         ksession.insert( h );
-        ksession.insert(pet1);
+        ksession.insert(pet1.get());
         
         ksession.insert( "go1" );
         ksession.fireAllRules();

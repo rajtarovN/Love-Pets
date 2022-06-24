@@ -12,7 +12,7 @@ export class PetsServiceService {
   constructor(private http: HttpClient) {}
 
   getPets(): Observable<any> {
-    const res = this.http.get('http://localhost:8080/api/getAllPets', {
+    const res = this.http.get('http://localhost:8080/getAllPets', {
       headers: this.headers,
       responseType: 'json',
     });
@@ -27,21 +27,21 @@ export class PetsServiceService {
     return res;
   }
   addPet(pet: Pet): Observable<any> {
-    const res = this.http.post<Pet>('http://localhost:8080/api/addPet', pet, {
+    const res = this.http.post<Pet>('http://localhost:8080/addPet', pet, {
       headers: this.headers,
       responseType: 'json',
     });
     return res;
   }
   deletePet(id: string): Observable<any> {
-    const res = this.http.post<any>(`http://localhost:8080/api/delete/${id}`, {
+    const res = this.http.post<any>(`http://localhost:8080/delete/${id}`, {
       headers: this.headers,
       responseType: 'json',
     });
     return res;
   }
   getNames(): Observable<any> {
-    const res = this.http.get<any>(`http://localhost:8080/api/getNames`, {
+    const res = this.http.get<any>(`http://localhost:8080/getNames`, {
       headers: this.headers,
       responseType: 'json',
     });

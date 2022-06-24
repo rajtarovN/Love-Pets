@@ -17,7 +17,7 @@ export class FormServiceService {
 
   sendFamilyForm(form: Family): Observable<any> {
     const res = this.http.post<Family>(
-      'http://localhost:8080/api/findPetFamilly',
+      'http://localhost:8080/findPetFamilly',
       form,
       {
         headers: this.headers,
@@ -29,7 +29,7 @@ export class FormServiceService {
 
   sendSinglepersonForm(form: SinglePerson): Observable<any> {
     const res = this.http.post<SinglePerson>(
-      'http://localhost:8080/api/findPetSinglePerson',
+      'http://localhost:8080/findPetSinglePerson',
       form,
       {
         // header('Access-Control-Allow-Origin: *');
@@ -41,7 +41,7 @@ export class FormServiceService {
   }
   backwardFamily(form: Family): Observable<any> {
     const res = this.http.post<Family>(
-      'http://localhost:8080/api/familyBackward/' + form.wantedPet,
+      'http://localhost:8080/familyBackward/' + form.wantedPet,
       form,
       {
         headers: this.headers,
@@ -53,7 +53,7 @@ export class FormServiceService {
   }
   backwardSinglePerson(form: SinglePerson): Observable<any> {
     const res = this.http.post<Family>(
-      'http://localhost:8080/api/singleBackward/' + form.wantedPet,
+      'http://localhost:8080/singleBackward/' + form.wantedPet,
       form,
       {
         headers: this.headers,

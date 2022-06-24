@@ -49,7 +49,7 @@ declare PersonloveReserching
 end
 
 rule "pet for children"
-	agenda-group "childrens-personalities"
+	agenda-group "final-rule"
 	//salience 1
 	no-loop
 	when
@@ -76,13 +76,20 @@ rule "pet for children"
         	Integer($t:this) from $personalPoints,
        		sum($t)
     	)
-        // Number($value3: intValue < 1 ) from accumulate(
-        //	String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
-        //	count($t)
-        //)
+    	//Number( $total: intValue == $adoptableOnKids) from accumulate(
+       // 	Integer($t:this) from $personalPoints,
+       	//	sum($t),
+    	//)
+        accumulate(
+			Integer($t:this) from $personalPoints,
+			$s: sum($t),
+			$pointsN: collectSet($t)
+		)
+		eval($s==$adoptableOnKids)
+		//eval($pointsN.size()==$personalPoints.size())
 	then
 		$helper.setText("2k");
-		System.out.println("Added score for goodInSport.+++ ");
+		System.out.println("KOMPLIKOVANO PRAVILO------------------------");
 		drools.getKnowledgeRuntime().setGlobal("perfectPetForChildren", $p);
 		update($helper);
 		update($u);
@@ -98,12 +105,11 @@ rule "physical activity good In Sport"
 		$helper: Helper()
 		not ( PersonGoodInSport(id == $id) )
 	then
-		$helper.setText("1");
-		System.out.println("Added score for goodInSportgggg. ");
+		//$helper.setText("1");
 		$u.getPersonalPoints().add(1);
 		$u.setPersonalities($u.getPersonalities() + 1);
 		insert(new PersonGoodInSport($id));
-		update($helper);
+		//update($helper);
 		update($u);
 		System.out.println("Added score for goodInSport. "+$u.getPersonalPoints());
 end;
@@ -118,13 +124,14 @@ rule "physical activity "
 		$helper: Helper()
 		not ( PersonPhysiclyActive(id == $id) )
 	then
-		$helper.setText("2");
-		System.out.println("Added score for goodInSport. ");
+		//$helper.setText("2");
+		
 		$u.setPersonalities($u.getPersonalities() + 2);
 		$u.getPersonalPoints().add(2);
 		insert(new PersonPhysiclyActive($id));
-		update($helper);
+		//update($helper);
 		update($u);
+		System.out.println("Added score for physical activity. "+$u.getPersonalPoints());
 end;
 
 rule "love reserching "
@@ -137,13 +144,11 @@ rule "love reserching "
 		$helper: Helper()
 		not ( PersonloveReserching(id == $id) )
 	then
-		$helper.setText("3");
-		System.out.println("Added score for goodInSport. ");
 		$u.getPersonalPoints().add(1);
 		$u.setPersonalities($u.getPersonalities() + 1);
 		insert(new PersonloveReserching($id));
-		update($helper);
 		update($u);
+		System.out.println("Added score for researching. "+$u.getPersonalPoints());
 end;
 
 rule "introvert ekstrovert"
@@ -156,13 +161,11 @@ rule "introvert ekstrovert"
 		not ( PersonIntrovertEkstrovert(id == $id) )
 		$helper: Helper()
 	then
-		$helper.setText("4");
-		System.out.println("Added score for goodInSport. ");
 		$u.setPersonalities($u.getPersonalities() + 3);
 		$u.getPersonalPoints().add(3);
 		insert(new PersonIntrovertEkstrovert($id));
-		update($helper);
 		update($u);
+		System.out.println("Added score for goodInSport. "+$u.getPersonalPoints());
 end;
 
 rule "more time"
@@ -175,13 +178,11 @@ rule "more time"
 		$helper: Helper()
 		not ( PersonMoreTime(id == $id) )
 	then
-		$helper.setText("5");
-		System.out.println("Added score for goodInSport. "+$moreTime);
 		$u.setPersonalities($u.getPersonalities() + 2);
 		$u.getPersonalPoints().add(2);
 		insert(new PersonMoreTime($id));
-		update($helper);
 		update($u);
+		System.out.println("Added score for more time. "+$u.getPersonalPoints());
 end;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 rule "Same price" //npr stresan posao
@@ -195,7 +196,7 @@ rule "Same price" //npr stresan posao
 		$helper: Helper()
 	then
 		$helper.setText("price");
-		System.out.println("Added score for same level stress: " + $petId);
+		System.out.println("Added score for same level price: " + $petId);
 		insert(new PetPrice($petId));
 		update($helper);
 end; 
@@ -209,9 +210,10 @@ rule "Same time" //npr stresan posao
 		$pet: Pet($petId : id, hoursPerWeek == $hoursPerWeek )
 		not ( PetTime(petId == $petId) )
 		$helper: Helper()
+		//$helper.setText2(hoursPerWeek+"")
 	then
 		$helper.setText("timeeeeeeeeeeeee");
-		System.out.println("Added score for same level stress: " + $petId);
+		System.out.println("Added score for same time per week: " + $petId);
 		insert(new PetTime($petId));
 		update($helper);
 end; 
@@ -227,7 +229,7 @@ rule "Same place for living" //npr stresan posao
 		$helper: Helper()
 	then
 		$helper.setText("place");
-		System.out.println("Added score for same level stress: " + $petId);
+		System.out.println("Added score for same place: " + $petId);
 		insert(new PetPlaceForLiving($petId));
 		update($helper);
 end;

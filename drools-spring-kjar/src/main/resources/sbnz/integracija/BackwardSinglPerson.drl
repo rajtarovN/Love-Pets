@@ -1,0 +1,68 @@
+package sbnz.integracija;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import sbnz.integracija.example.model.Pet;
+import sbnz.integracija.example.model.User;
+import sbnz.integracija.example.model.Helper;
+import sbnz.integracija.example.model.SinglPerson;
+//buduci da ovo radim za psa, onda ne treba da bodujem samo imam if else 
+//ovo je za singl osobe
+
+global Pet perfectPetForChildren;
+
+query isGoodForPet()
+	$h: Helper( setText2("sad"))
+    $u: SinglPerson( $alergicOn : alergicOn, $afraidOf: afraidOf, $placeForLiving: placeForLiving,
+    		 $hoursPerWeek: hoursPerWeek, $price: price  )
+    $pet: Pet($petId: id,  $type : type //price == $price, placeForLiving == $placeForLiving,hoursPerWeek == $hoursPerWeek
+    	  )
+    
+    Number($value: intValue < 1 ) from accumulate(
+        	String($t:this, this == $type) from $alergicOn,
+        	count($t)
+       )
+         Number($valuee: intValue < 1 ) from accumulate(
+        	String($t:this, this == $type) from $afraidOf,
+        	count($t)
+       )
+     
+     
+     
+        //Number($value3: intValue3 < 1 ) from accumulate(
+        	//String($t:this, this memberOf $notAllowdToLiveWith ) from $liveWith,
+        	//count($t)
+        //)
+    isPersonalityGoodForPet()
+    isSameLevelActivityPet()
+end
+
+query isPersonalityGoodForPet()
+	$h: Helper( setText2("sads"))
+	$u: SinglPerson( $levelOfStressOnJob: levelOfStressOnJob, $loveMystery: loveMystery,$loveMeditation: loveMeditation, 
+					$levelOfPatience: levelOfPatience, $levelOfPersistance: levelOfPersistance, $extroversion: extroversion, 
+					$introversion: introversion)
+    $pet: Pet( introversion == $introversion, extroversion == $extroversion, levelOfPersistance == $levelOfPersistance,
+     			levelOfPatience == $levelOfPatience, loveMeditation == $loveMeditation, loveMystery == $loveMystery, levelOfStressOnJob == $levelOfStressOnJob  )
+end
+
+query isSameLevelActivityPet()
+	$h: Helper( setText2("sadd"))
+	$u: SinglPerson( $loveRunning: loveRunning, $loveWalking : loveWalking )
+    $pet: Pet( $petId : id, $levelOfActivity: levelOfActivity)//Pet
+    //($levelOfActivity  == 3 && $loveRunning ) ||  ( $loveWalking && $levelOfActivity  == 2) || 
+    //( $loveWalking == false && $loveRunning==false && $levelOfActivity  == 1))
+    
+end
+
+rule "go1"
+when
+    String( this == "go1" )
+    isGoodForPet( )
+    $h: Helper( setText2("saggd"))
+    $pet: Pet()
+then
+    System.out.println( "Uredu je ovo, nekako setovati povratni rez" );
+    drools.getKnowledgeRuntime().setGlobal("perfectPetForChildren", $pet);
+end

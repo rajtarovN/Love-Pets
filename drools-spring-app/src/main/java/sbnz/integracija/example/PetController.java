@@ -81,7 +81,7 @@ public class PetController {
 	
 	@RequestMapping(value = "/singleBackward/{id}", method = RequestMethod.POST, produces = "application/json")
 	@CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<Object> singlPersonBackward(@PathVariable Long id, @RequestBody SinglePersonDTO dto) {
+    public ResponseEntity<Object> singlPersonBackward(@PathVariable Long id, @RequestBody FormSinglePersonDTO dto) {
 		
         return new ResponseEntity<>(this.petService.isPetGoodForSinglePerson(id,dto), HttpStatus.OK);
     }

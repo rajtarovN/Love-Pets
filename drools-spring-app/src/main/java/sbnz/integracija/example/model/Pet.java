@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class Pet {
 	 @Column(unique = false, nullable = true)
     private String name;
 
-	 @Column(unique = false, nullable = true)
+	 @Column(name= "pet_type", unique = false, nullable = true)
     private String type;
 
 	 @Column(unique = false, nullable = true)
@@ -50,8 +52,8 @@ public class Pet {
 	 @Transient 
     private List<String> notAllowdToLiveWith;
 	 
-	 @Column(unique = false, nullable = true)
-	    private String notLiveWith;
+	 @Column(name = "not_live_with",unique = false, nullable = true)
+	 private String notLiveWith;
 	 
     @Column(unique = false, nullable = true)
     private int levelOfActivity; //ovako ovo neka ide do 3, 3 je voli trc i setnju, 2 setnja, 1 nista 
@@ -59,7 +61,8 @@ public class Pet {
     @Column(unique = false, nullable = true)
     private int degreeOfMolting; //stepen linjanja
     
-    @Column(unique = false, nullable = true)
+    @Column(name = "place_for_living", nullable = false)
+    @Enumerated(EnumType.STRING)
     private PlaceForLiving placeForLiving;
     
     @Column(unique = false, nullable = true)
