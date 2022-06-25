@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsesrServiceService } from '../../../user/services/user-service/usesr-service.service';
 import { UserRegister } from '../../../shared/models/usre-register';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +20,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private userService: UsesrServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,8 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(user).subscribe((res) => {
       console.log(res, 'ddd');
       if (res !== null) {
-        alert('Succesfully registrated.');
+        alert('Successfully registered.');
+        this.router.navigate(['/login']);
       }
     });
   }

@@ -9,8 +9,7 @@
     <mat-card-content>
       <div class="divForm">
         <form [formGroup]="secondPartQuestions">
-          <mat-label class="labelColor">Input name of pet (species): </mat-label
-          ><br />
+          <mat-label class="labelColor">Input name of pet: </mat-label><br />
 
           <input
             class="mat-form-field1"
@@ -23,7 +22,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input how much hours per week you can spend on pet:
+            >Input how many hours per week the pet needs:
           </mat-label>
 
           <input
@@ -36,9 +35,7 @@
             [(ngModel)]="this.hoursPerWeek"
           />
 
-          <mat-label class="labelColor"
-            >Input price which you can spend for bying pet:
-          </mat-label>
+          <mat-label class="labelColor">Input price for pet: </mat-label>
 
           <input
             class="mat-form-field1"
@@ -51,7 +48,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input level of stress of your job from 0-5: </mat-label
+            >Input level of stress of your job for which pet is good: </mat-label
           ><br />
 
           <input
@@ -79,7 +76,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input level of protection from 0-5:
+            >Input level of protection from:
           </mat-label>
 
           <input
@@ -93,7 +90,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input level of adoptable on kids: </mat-label
+            >Input level of activity person needs to have for pet: </mat-label
           ><br />
 
           <input
@@ -107,7 +104,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input how much do you love meditation from 0-5: </mat-label
+            >Input how much person have to love meditation for pet: </mat-label
           ><br />
 
           <input
@@ -121,7 +118,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input your level of persistence from 0-5: </mat-label
+            >Input your level of persistence of owner: </mat-label
           ><br />
 
           <input
@@ -134,8 +131,7 @@
             [(ngModel)]="this.levelOfPersistance"
           />
 
-          <mat-label class="labelColor"
-            >Input how much do you love molting from 0-5: </mat-label
+          <mat-label class="labelColor">Input level of molting: </mat-label
           ><br />
 
           <input
@@ -149,7 +145,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input your level of patience from 0-5: </mat-label
+            >Input owners level of patience: </mat-label
           ><br />
 
           <input
@@ -163,7 +159,7 @@
           />
 
           <mat-label class="labelColor"
-            >Input your level of friendlyness from 0-5: </mat-label
+            >Input owners level of friendlyness from 0-5: </mat-label
           ><br />
           <input
             class="mat-form-field1"
@@ -178,7 +174,7 @@
 
         <div class="f2">
           <mat-label class="labelColor"
-            >Select years of the youngest children: </mat-label
+            >Select minimum years of owner who is abele to have this pet: </mat-label
           ><br />
 
           <select [(ngModel)]="this.selectedYears">
@@ -188,7 +184,7 @@
           </select>
 
           <mat-label class="labelColor"
-            >Select how good in sport are children: </mat-label
+            >Select how good in sport have to be children for this pet: </mat-label
           ><br />
 
           <select
@@ -207,7 +203,7 @@
           </select>
 
           <mat-label class="labelColor"
-            >Select how physicly active are children: </mat-label
+            >Select does physicly active have to be children for this pet: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedActivness">
             <option *ngFor="let o of optionsActivness" value="{{ o.value }}">
@@ -216,7 +212,7 @@
           </select>
 
           <mat-label class="labelColor"
-            >Select how much your children love reserching: </mat-label
+            >Select how much children have to love reserching: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedResersching">
             <option *ngFor="let o of optionsRes" value="{{ o.value }}">
@@ -225,7 +221,7 @@
           </select>
 
           <mat-label class="labelColor"
-            >Select would you like that children speding more time with animal? </mat-label
+            >Hoes this pet require more time than usual: (more time)</mat-label
           ><br />
           <select [(ngModel)]="this.selectedMoreTime">
             <option *ngFor="let o of optionsYN" value="{{ o.value }}">
@@ -234,14 +230,14 @@
           </select>
 
           <mat-label class="labelColor"
-            >Are your children more introvert or ekstrovert? </mat-label
+            >Is this pet for introvert or ekstrovert children? </mat-label
           ><br />
           <select [(ngModel)]="this.selectedIntrovertExtrovert">
             <option *ngFor="let o of optionsType" value="{{ o.value }}">
               {{ o.name }}
             </option>
           </select>
-          <mat-label class="labelColor">Select do you love running: </mat-label
+          <mat-label class="labelColor">Select do pet love running: </mat-label
           ><br />
 
           <select [(ngModel)]="this.selectedRunning">
@@ -249,7 +245,7 @@
               {{ o.name }}
             </option>
           </select>
-          <mat-label class="labelColor">Select do you love walking: </mat-label
+          <mat-label class="labelColor">Select do pet love walking: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedWalking">
             <option *ngFor="let o of optionsYN" value="{{ o.value }}">
@@ -257,7 +253,8 @@
             </option>
           </select>
 
-          <mat-label class="labelColor">Select do you love mystery: </mat-label
+          <mat-label class="labelColor"
+            >Is a pet good for a person who loves mystery? </mat-label
           ><br />
           <select [(ngModel)]="this.selectedMystery">
             <option *ngFor="let o of optionsYN" value="{{ o.value }}">
@@ -266,7 +263,7 @@
           </select>
 
           <mat-label class="labelColor"
-            >Select your type of personality: </mat-label
+            >Select type of personality of person: </mat-label
           ><br />
           <select [(ngModel)]="this.selectedType">
             <option *ngFor="let o of optionsType" value="{{ o.value }}">
@@ -274,7 +271,7 @@
             </option>
           </select>
           <mat-label class="labelColor"
-            >Select where would your pet live: </mat-label
+            >Select where would this pet live: </mat-label
           ><br />
           <select [(ngModel)]="this.placeForLiving">
             <option *ngFor="let o of optionsPlace" value="{{ o.value }}">
@@ -284,7 +281,7 @@
         </div>
         <section class="section1">
           <div>
-            Chose pets which you live with:<br />
+            Chose pets with which this pet can't live:<br />
             <span *ngFor="let item of listLiveWith">
               <input
                 class="checkBox"
