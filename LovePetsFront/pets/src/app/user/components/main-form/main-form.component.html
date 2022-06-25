@@ -1,0 +1,149 @@
+<div class="back">
+  <mat-card class="card-position back">
+    <mat-card-header> </mat-card-header>
+    <mat-card-content>
+      <!--  -->
+      <div class="divForm">
+        <form [formGroup]="firstPartQuestions">
+          <mat-label class="labelColor"
+            >Input level of protection from 0-5:
+          </mat-label>
+          <div id="levelOfProtection" appearance="standard">
+            <input
+              class="mat-form-field1"
+              matInput
+              type="number"
+              formControlName="levelOfProtection"
+              id="levelOfProtection"
+              required
+              [(ngModel)]="this.levelOfProtection"
+            />
+          </div>
+
+          <mat-label class="labelColor"
+            >Input how much hours per week you can spend on pet:
+          </mat-label>
+          <div id="hoursPerWeek" appearance="standard">
+            <input
+              class="mat-form-field1"
+              matInput
+              type="number"
+              formControlName="hoursPerWeek"
+              id="hoursPerWeek"
+              required
+              [(ngModel)]="this.hoursPerWeek"
+            />
+          </div>
+
+          <mat-label class="labelColor"
+            >Input price which you can spend for bying pet:
+          </mat-label>
+          <div id="price" appearance="standard">
+            <input
+              class="mat-form-field1"
+              matInput
+              type="number"
+              id="price"
+              formControlName="price"
+              required
+              [(ngModel)]="this.price"
+            />
+          </div>
+        </form>
+        <div class="listDiv">
+          <section class="section1">
+            <div>
+              Choose pets from wich you are alergic:<br />
+              <span *ngFor="let item of listAlergic">
+                <input
+                  class="checkBox"
+                  type="checkbox"
+                  [(ngModel)]="item.checked"
+                  (change)="changeCheckbox($event)"
+                />
+                <img mat-icon [src]="item.img" class="side-icon" />{{
+                  item.type
+                }}
+                <br />
+              </span>
+            </div>
+          </section>
+          <section class="section2">
+            <div>
+              Chose pets from wich you are afraid:<br />
+              <span *ngFor="let item of list">
+                <input
+                  class="checkBox"
+                  type="checkbox"
+                  [(ngModel)]="item.checked"
+                  (change)="changeCheckbox($event)"
+                />
+                <img mat-icon [src]="item.img" class="side-icon" />{{
+                  item.type
+                }}
+                <br />
+              </span>
+            </div>
+          </section>
+          <section class="section2">
+            <div>
+              Chose pets which you live with:<br />
+              <span *ngFor="let item of listLiveWith">
+                <input
+                  class="checkBox"
+                  type="checkbox"
+                  [(ngModel)]="item.checked"
+                  (change)="changeCheckbox($event)"
+                />
+                <img mat-icon [src]="item.img" class="side-icon" />{{
+                  item.type
+                }}
+                <br />
+              </span>
+            </div>
+          </section>
+        </div>
+
+        <div class="df2">
+          <mat-label class="labelColor"
+            >Select where would your pet live: </mat-label
+          ><br />
+          <select [(ngModel)]="this.placeForLiving">
+            <option *ngFor="let o of optionsPlace" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor">Activness</mat-label>
+
+          <select [(ngModel)]="this.activness">
+            <option *ngFor="let o of optionsActive">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor"
+            >Select if you are single person or have familly:</mat-label
+          >
+          <select [(ngModel)]="this.selectedSF">
+            <option *ngFor="let o of optionsSF">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
+
+        <mat-action-list>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            class="submit-button"
+            (click)="submit()"
+            [disabled]="firstPartQuestions.invalid"
+          >
+            Next
+          </button>
+        </mat-action-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

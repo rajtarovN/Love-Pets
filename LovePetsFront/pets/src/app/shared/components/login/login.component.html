@@ -1,0 +1,37 @@
+<div id="container-div" class="back">
+  <div>
+    <p>
+      <mat-toolbar>
+        <span>Love & Pets</span>
+      </mat-toolbar>
+    </p>
+    <form [formGroup]="secondPartQuestions">
+      <div class="divForm">
+        <mat-label class="labelColor">Input email: </mat-label><br />
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="text"
+          id="email"
+          formControlName="email"
+          required
+          [(ngModel)]="this.email"
+        />
+
+        <mat-label class="labelColor">Input password: </mat-label><br />
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          [(ngModel)]="this.password"
+        />
+        <button mat-button (click)="this.submit()">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

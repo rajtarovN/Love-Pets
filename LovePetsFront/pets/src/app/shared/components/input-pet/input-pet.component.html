@@ -1,0 +1,312 @@
+<div class="back">
+  <p>
+    <mat-toolbar>
+      <span>My Application</span>
+    </mat-toolbar>
+  </p>
+  <mat-card class="card-position back">
+    <mat-card-header> </mat-card-header>
+    <mat-card-content>
+      <div class="divForm">
+        <form [formGroup]="secondPartQuestions">
+          <mat-label class="labelColor">Input name of pet: </mat-label><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="text"
+            id="name"
+            formControlName="name"
+            required
+            [(ngModel)]="this.name"
+          />
+
+          <mat-label class="labelColor"
+            >Input how many hours per week the pet needs:
+          </mat-label>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            formControlName="hoursPerWeek"
+            id="hoursPerWeek"
+            required
+            [(ngModel)]="this.hoursPerWeek"
+          />
+
+          <mat-label class="labelColor">Input price for pet: </mat-label>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="price"
+            formControlName="price"
+            required
+            [(ngModel)]="this.price"
+          />
+
+          <mat-label class="labelColor"
+            >Input level of stress of your job for which pet is good: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfStressOnJob"
+            formControlName="levelOfStressOnJob"
+            required
+            [(ngModel)]="this.levelOfStressOnJob"
+          />
+
+          <mat-label class="labelColor"
+            >Input level of adoptable on kids: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="adoptableOnKids"
+            formControlName="adoptableOnKids"
+            required
+            [(ngModel)]="this.adoptableOnKids"
+          />
+
+          <mat-label class="labelColor"
+            >Input level of protection from:
+          </mat-label>
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            formControlName="levelOfProtection"
+            id="levelOfProtection"
+            required
+            [(ngModel)]="this.levelOfProtection"
+          />
+
+          <mat-label class="labelColor"
+            >Input level of activity person needs to have for pet: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfActivity"
+            formControlName="levelOfActivity"
+            required
+            [(ngModel)]="this.levelOfActivity"
+          />
+
+          <mat-label class="labelColor"
+            >Input how much person have to love meditation for pet: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="loveMeditation"
+            formControlName="loveMeditation"
+            required
+            [(ngModel)]="this.loveMeditation"
+          />
+
+          <mat-label class="labelColor"
+            >Input your level of persistence of owner: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfPersistance"
+            formControlName="levelOfPersistance"
+            required
+            [(ngModel)]="this.levelOfPersistance"
+          />
+
+          <mat-label class="labelColor">Input level of molting: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="degreeOfMolting"
+            formControlName="degreeOfMolting"
+            required
+            [(ngModel)]="this.degreeOfMolting"
+          />
+
+          <mat-label class="labelColor"
+            >Input owners level of patience: </mat-label
+          ><br />
+
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="levelOfPatience"
+            formControlName="levelOfPatience"
+            required
+            [(ngModel)]="this.levelOfPatience"
+          />
+
+          <mat-label class="labelColor"
+            >Input owners level of friendlyness from 0-5: </mat-label
+          ><br />
+          <input
+            class="mat-form-field1"
+            matInput
+            type="number"
+            id="friendly"
+            formControlName="friendly"
+            required
+            [(ngModel)]="this.friendly"
+          />
+        </form>
+
+        <div class="f2">
+          <mat-label class="labelColor"
+            >Select minimum years of owner who is abele to have this pet: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedYears">
+            <option *ngFor="let o of options" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select how good in sport have to be children for this pet: </mat-label
+          ><br />
+
+          <select
+            [(ngModel)]="this.selectedSport"
+            class="selectC"
+            matNativeControl
+            required
+          >
+            <option
+              class="optionC"
+              *ngFor="let o of optionsSport"
+              value="{{ o.value }}"
+            >
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select does physicly active have to be children for this pet: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedActivness">
+            <option *ngFor="let o of optionsActivness" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select how much children have to love reserching: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedResersching">
+            <option *ngFor="let o of optionsRes" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Hoes this pet require more time than usual: (more time)</mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMoreTime">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Is this pet for introvert or ekstrovert children? </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedIntrovertExtrovert">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor">Select do pet love running: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedRunning">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor">Select do pet love walking: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedWalking">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Is a pet good for a person who loves mystery? </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMystery">
+            <option *ngFor="let o of optionsYN" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select type of personality of person: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedType">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+          <mat-label class="labelColor"
+            >Select where would this pet live: </mat-label
+          ><br />
+          <select [(ngModel)]="this.placeForLiving">
+            <option *ngFor="let o of optionsPlace" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
+        <section class="section1">
+          <div>
+            Chose pets with which this pet can't live:<br />
+            <span *ngFor="let item of listLiveWith">
+              <input
+                class="checkBox"
+                type="checkbox"
+                [(ngModel)]="item.checked"
+                (change)="changeCheckbox($event)"
+              />
+              <img mat-icon [src]="item.img" class="side-icon" />{{ item.type }}
+              <br />
+            </span>
+          </div>
+        </section>
+
+        <mat-action-list>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            class="submit-button"
+            (click)="submit()"
+          >
+            Next
+          </button>
+        </mat-action-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

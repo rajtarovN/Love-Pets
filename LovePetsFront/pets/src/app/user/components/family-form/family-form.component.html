@@ -1,0 +1,96 @@
+<div class="back">
+  <!-- <p>
+    <mat-toolbar>
+      <span>My Application</span>
+    </mat-toolbar>
+  </p> -->
+  <mat-card class="card-position back">
+    <mat-card-header> </mat-card-header>
+    <mat-card-content>
+      <!--  -->
+      <div class="divForm">
+        <div class="f2">
+          <mat-label class="labelColor"
+            >Select years of the youngest children: </mat-label
+          ><br />
+
+          <select [(ngModel)]="this.selectedYears">
+            <option *ngFor="let o of options" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select how good in sport are children: </mat-label
+          ><br />
+
+          <select
+            [(ngModel)]="this.selectedSport"
+            class="selectC"
+            matNativeControl
+            required
+          >
+            <option
+              class="optionC"
+              *ngFor="let o of optionsSport"
+              value="{{ o.value }}"
+            >
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select how physicly active are children: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedActivness">
+            <option *ngFor="let o of optionsActivness" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select how much your children love reserching: </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedResersching">
+            <option *ngFor="let o of optionsRes" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Select would you like that children speding more time with animal? </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedMoreTime">
+            <option *ngFor="let o of optionsMoreTime" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+
+          <mat-label class="labelColor"
+            >Are your children more introvert or ekstrovert? </mat-label
+          ><br />
+          <select [(ngModel)]="this.selectedIntrovertExtrovert">
+            <option *ngFor="let o of optionsType" value="{{ o.value }}">
+              {{ o.name }}
+            </option>
+          </select>
+        </div>
+
+        <mat-action-list>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            class="submit-button"
+            (click)="submit()"
+          >
+            Find best pet
+          </button>
+          <button mat-flat-button (click)="this.choosePet()" tabindex="-1">
+            Choose pet and see is it good for you
+          </button>
+        </mat-action-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

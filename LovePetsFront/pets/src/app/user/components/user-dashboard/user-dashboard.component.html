@@ -1,0 +1,28 @@
+<div>
+  <p>
+    <mat-toolbar>
+      <span>Love & Pets</span>
+      <span class="navBar">
+        <img mat-icon [src]="'assets/images/heartPaw2.png'" class="side-icon" />
+        <button (click)="router.navigate(['/pet-view'])" class="buttonsInSpan">
+          View pets
+        </button>
+        <button (click)="this.state = 1" class="buttonsInSpan">
+          Find best pet
+        </button>
+      </span>
+    </mat-toolbar>
+  </p>
+  <app-main-form
+    *ngIf="this.state === 1"
+    (filledForm)="onFormInputed($event)"
+  ></app-main-form>
+  <app-single-person-form
+    *ngIf="this.state === 2"
+    (filledForm)="onSingleFormInputed($event)"
+  ></app-single-person-form>
+  <app-family-form
+    *ngIf="this.state === 3"
+    (filledForm)="onFamillyFormInputed($event)"
+  ></app-family-form>
+</div>
