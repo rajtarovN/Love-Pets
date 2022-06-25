@@ -22,7 +22,7 @@ export class UsesrServiceService {
   constructor(private http: HttpClient) {}
 
   login(auth: UserLogin): Observable<UserWithToken> {
-    return this.http.post<UserWithToken>(`${environment.baseUrl}/login`, auth, {
+    return this.http.post<UserWithToken>('http://localhost:8080/login', auth, {
       headers: this.headers,
       responseType: 'json',
     });
@@ -30,14 +30,10 @@ export class UsesrServiceService {
 
   register(auth: UserRegister): Observable<any> {
     //auth,
-    const res = this.http.post<any>(
-      'http://localhost:8080/api/register',
-      auth,
-      {
-        headers: this.headers,
-        responseType: 'text' as 'json',
-      }
-    );
+    const res = this.http.post<any>('http://localhost:8080/register', auth, {
+      headers: this.headers,
+      responseType: 'text' as 'json',
+    });
     console.log(res, 'aaa');
     return res;
   }

@@ -41,6 +41,9 @@ export class RegistrationComponent implements OnInit {
     };
     this.userService.register(user).subscribe((res) => {
       console.log(res, 'ddd');
+      if (res !== null) {
+        alert('Succesfully registrated.');
+      }
     });
   }
 }

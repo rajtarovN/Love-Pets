@@ -45,22 +45,33 @@ public class User implements UserDetails{
 
     @Column(unique = false, nullable = true)
     protected Boolean active;
+    
     @Column(unique = false, nullable = true)
-    protected int levelOfProtection;
+    protected Integer levelOfProtection;
+    
     @Column(unique = false, nullable = true)
-    protected int hoursPerWeek;
+    protected Integer hoursPerWeek;
+    
     @Column(unique = false, nullable = true)
-    protected float price;
+    protected Float price;
+    
     @Column(unique = false, nullable = true)
     protected PlaceForLiving placeForLiving;
+    
     @ElementCollection
     protected List<String> alergicOn; //ovo je tip zivotinje
+    
     @ElementCollection
     protected List<String> afraidOf;
+    
     @ElementCollection
     protected List<String> liveWith;
 
-    public Long getId() {
+    public void setHoursPerWeek(Integer hoursPerWeek) {
+		this.hoursPerWeek = hoursPerWeek;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -214,7 +225,7 @@ public class User implements UserDetails{
 		this.placeForLiving = placeForLiving2.equals("inside")? PlaceForLiving.INSIDE :
 									placeForLiving2.equals("outside")? PlaceForLiving.OUTSIDE : PlaceForLiving.INSIDE_OUTSIDE;
 		this.hoursPerWeek = hoursPerWeek2;
-		this.price = price2;
+		this.price = (float) price2;
 		
 	}
 

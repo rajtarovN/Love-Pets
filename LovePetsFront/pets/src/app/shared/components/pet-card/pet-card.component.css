@@ -4,6 +4,7 @@ mat-card {
     background-color: #b9edd7;
     box-shadow: none !important;
     margin: 40px;
+    color: #424242;
   }
   h3 {
     text-align: center;

@@ -2,59 +2,60 @@
   <div>
     <p>
       <mat-toolbar>
-        <span>My Application</span>
+        <span>Love & Pets</span>
       </mat-toolbar>
     </p>
     <form [formGroup]="secondPartQuestions">
       <div class="divForm">
         <mat-label class="labelColor">Input name: </mat-label><br />
-        <mat-form-field id="name" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="name"
-            formControlName="name"
-            required
-            [(ngModel)]="this.name"
-          />
-        </mat-form-field>
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="text"
+          id="name"
+          formControlName="name"
+          required
+          [(ngModel)]="this.name"
+        />
 
         <mat-label class="labelColor">Input last name: </mat-label><br />
-        <mat-form-field id="lastName" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="lastName"
-            formControlName="lastName"
-            required
-            [(ngModel)]="this.lastName"
-          />
-        </mat-form-field>
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          required
+          [(ngModel)]="this.lastName"
+        />
 
         <mat-label class="labelColor">Input email: </mat-label><br />
-        <mat-form-field id="email" appearance="standard">
-          <input
-            matInput
-            type="text"
-            id="email"
-            formControlName="email"
-            required
-            [(ngModel)]="this.email"
-          />
-        </mat-form-field>
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="text"
+          id="email"
+          formControlName="email"
+          required
+          [(ngModel)]="this.email"
+        />
 
         <mat-label class="labelColor">Input password: </mat-label><br />
-        <mat-form-field id="password" appearance="standard">
-          <input
-            matInput
-            type="password"
-            id="password"
-            formControlName="password"
-            required
-            [(ngModel)]="this.password"
-          />
-        </mat-form-field>
-        <br /><button (click)="this.submit()">Login</button>
+
+        <input
+          class="mat-form-field1"
+          matInput
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          [(ngModel)]="this.password"
+        />
+
+        <br /><button mat-button (click)="this.submit()">Login</button>
       </div>
     </form>
   </div>

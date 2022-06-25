@@ -159,38 +159,42 @@ export class InputPetComponent implements OnInit {
     ];
   }
   submit(): void {
-    let listChoosenPets = this.listLiveWith.filter((item) => item.type);
+    if (localStorage.getItem('username') !== 'admin') {
+      alert('You are not admin, so you cant add pet');
+    } else {
+      let listChoosenPets = this.listLiveWith.filter((item) => item.type);
 
-    var pet: Pet = {
-      name: this.name,
-      type: this.selectedType,
-      hoursPerWeek: this.hoursPerWeek,
-      price: this.price,
-      adoptableOnKids: this.adoptableOnKids,
-      minYears: this.selectedYears,
-      levelOfActivity: this.levelOfActivity,
-      degreeOfMolting: this.degreeOfMolting,
-      placeForLiving: this.placeForLiving,
-      levelOfProtection: this.levelOfProtection,
-      extroversion: this.selectedIntrovertExtrovert,
-      introversion: !this.selectedIntrovertExtrovert,
-      levelOfStressOnJob: this.levelOfActivity,
-      loveMystery: this.selectedMystery,
-      loveMeditation: this.loveMeditation,
-      levelOfPatience: this.levelOfPatience,
-      levelOfPersistance: this.levelOfPersistance,
-      notLiveWith: this.filterList(listChoosenPets),
-    };
-    this.petService.addPet(pet).subscribe((res) => {
-      console.log(res);
-      if (res === null) {
-        alert('Something went wrong');
-      } else if (res.name == null) {
-        alert('Something went wrong');
-      } else {
-        alert('Successfuly added pet');
-      }
-    });
+      var pet: Pet = {
+        name: this.name,
+        type: this.selectedType,
+        hoursPerWeek: this.hoursPerWeek,
+        price: this.price,
+        adoptableOnKids: this.adoptableOnKids,
+        minYears: this.selectedYears,
+        levelOfActivity: this.levelOfActivity,
+        degreeOfMolting: this.degreeOfMolting,
+        placeForLiving: this.placeForLiving,
+        levelOfProtection: this.levelOfProtection,
+        extroversion: this.selectedIntrovertExtrovert,
+        introversion: !this.selectedIntrovertExtrovert,
+        levelOfStressOnJob: this.levelOfActivity,
+        loveMystery: this.selectedMystery,
+        loveMeditation: this.loveMeditation,
+        levelOfPatience: this.levelOfPatience,
+        levelOfPersistance: this.levelOfPersistance,
+        notLiveWith: this.filterList(listChoosenPets),
+      };
+      this.petService.addPet(pet).subscribe((res) => {
+        console.log(res);
+        if (res === null) {
+          alert('Something went wrong');
+        } else if (res.name == null) {
+          alert('Something went wrong');
+        } else {
+          alert('Successfuly added pet');
+        }
+      });
+    }
   }
 
   get result() {

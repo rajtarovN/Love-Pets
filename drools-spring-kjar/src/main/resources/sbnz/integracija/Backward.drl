@@ -17,14 +17,14 @@ global String petExist;
 query isGoodForDog()
     $pet: Pet($petId: id, $minYears: minYears, $type : type)
     $u: Family( $childrenYears : childrenYears, $afraidOf: afraidOf, $alergicOn : alergicOn)
-    Number($value: intValue < 1 ) from accumulate(
-        	String($t:this, this == $type) from $alergicOn,
-        	count($t)
-        )
-         Number($valuee: intValue < 1 ) from accumulate(
-        	String($t:this, this == $type) from $afraidOf,
-        	count($t)
-        )
+    //Number($value: intValue < 1 ) from accumulate(
+       // 	String($t:this, this == $type) from $alergicOn,
+       // 	count($t)
+       // )
+       //  Number($valuee: intValue < 1 ) from accumulate(
+       // 	String($t:this, this == $type) from $afraidOf,
+       // 	count($t)
+       // )
     isPersonalityGoodForPet()
 end
 

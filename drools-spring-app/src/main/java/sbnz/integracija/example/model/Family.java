@@ -138,6 +138,9 @@ public class Family extends User{
 		this.sthNew = true;
 		this.personalities = 0;
 		this.personalPoints = new ArrayList<Integer>();
+		this.afraidOf = dto.getAfraidOf();
+		this.alergicOn = dto.getAlergic();
+		this.liveWith = dto.getLiveWith();
 	}
 
 //	public Family(Long id, String firstName, String lastName, String email, String password, Boolean active,

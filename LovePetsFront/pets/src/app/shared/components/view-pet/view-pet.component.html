@@ -1,5 +1,24 @@
-<div id="container-div" class="back">
-  <mat-list *ngFor="let pet of this.pets">
-    <app-pet-card [pet]="pet"></app-pet-card>
-  </mat-list>
+<div>
+  <p>
+    <mat-toolbar>
+      <span>Love & Pets</span>
+      <span class="navBar">
+        <img mat-icon [src]="'assets/images/heartPaw2.png'" class="side-icon" />
+        <button (click)="router.navigate(['/pet-view'])" class="buttonsInSpan">
+          View pets
+        </button>
+        <button
+          (click)="router.navigate(['/user-dashboard'])"
+          class="buttonsInSpan"
+        >
+          Find best pet
+        </button>
+      </span>
+    </mat-toolbar>
+  </p>
+  <div id="container-div" class="back">
+    <mat-list *ngFor="let pet of this.pets">
+      <app-pet-card [pet]="pet"></app-pet-card>
+    </mat-list>
+  </div>
 </div>

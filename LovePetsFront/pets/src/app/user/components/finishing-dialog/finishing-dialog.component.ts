@@ -13,11 +13,16 @@ import { Pet } from '../../../shared/models/pet';
   styleUrls: ['./finishing-dialog.component.css'],
 })
 export class FinishingDialogComponent implements OnInit {
+  img: string = 'assets/images/dog.png';
   constructor(
     public dialogRef: MatDialogRef<FinishingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { pet: Pet }
-  ) {}
-  ngOnInit(): void {}
+  ) {
+    this.img = 'assets/images/' + data.pet.type + '.png';
+  }
+  ngOnInit(): void {
+    this.img = 'assets/images/' + this.data.pet.type + '.png';
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

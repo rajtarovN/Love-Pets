@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pet } from '../../models/pet';
 import { PetsServiceService } from '../../services/pets-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-pet',
@@ -57,7 +58,7 @@ export class ViewPetComponent implements OnInit {
     { name: 'Introvert', value: 'introvert' },
   ];
 
-  constructor(private petService: PetsServiceService) {
+  constructor(private petService: PetsServiceService, public router: Router) {
     this.petService.getPets().subscribe((res) => {
       console.log(res);
       this.pets = res;

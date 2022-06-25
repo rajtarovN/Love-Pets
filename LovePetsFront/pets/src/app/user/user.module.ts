@@ -35,5 +35,6 @@ import { ChoosePetComponent } from './components/choose-pet/choose-pet.component
       preventDuplicates: true,
     }),
   ],
+  exports: [],
 })
 export class UserModule {}

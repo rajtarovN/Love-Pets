@@ -148,40 +148,34 @@ public class PetService {
 
 	public Object getNames() {
 		List<Pet> pets= this.petRepository.findAll();
-//		Pet pet1 = new Pet((long) 1, "golden retriver", "dog", 12, 400, 5, 3, new ArrayList<String>(), 3, 4,
-//				PlaceForLiving.INSIDE_OUTSIDE, 3, true, 3, true, 3, 3, 1);
-//
-//		Pet pet2 = new Pet((long) 2, "golden fish", "fish", 12, 400, 5, 0, new ArrayList<String>(), 3, 4,
-//				PlaceForLiving.INSIDE, 3, false, 3, false, 3, 3, 1);
-//		List<Pet> pets= new ArrayList<>();
-//		pets.add(pet1);
-//		pets.add(pet2);
+
 		ArrayList<PetNamesDTO> names =new ArrayList<>();
 		for(Pet p: pets) {
 			names.add(new PetNamesDTO(p));
 		}
 		return names;
 	}
+
 	public Pet isPetGoodForFamilly(Long id, FormFamillyDTO dto) {
 		System.out.print("usao je!!!!!");
-    	List<String> notAll = new ArrayList<String>();
-    	//notAll.add("a");
-    	List<String> alergic = new ArrayList<String>();
-    	//alergic.add("dog");
-    	List<String> afraid = new ArrayList<String>();
-    	//afraid.add("a");
-    	List<String> liveWith = new ArrayList<String>();
-    	//liveWith.add("dog");
+//    	List<String> notAll = new ArrayList<String>();
+//    	//notAll.add("a");
+//    	List<String> alergic = new ArrayList<String>();
+//    	//alergic.add("dog");
+//    	List<String> afraid = new ArrayList<String>();
+//    	//afraid.add("a");
+//    	List<String> liveWith = new ArrayList<String>();
+//    	//liveWith.add("dog");
     	
     	KieSession ksession = kieContainer.newKieSession();
-    	Family f = new Family((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, alergic, 400, 12,PlaceForLiving.INSIDE_OUTSIDE, afraid,
-				liveWith,3, true,true,true,true,true,true,0);
+//    	Family f = new Family((long)1, "Milica", "Milic", "milica@gmail.com", "123", true, 3, alergic, 400, 12,PlaceForLiving.INSIDE_OUTSIDE, afraid,
+//				liveWith,3, true,true,true,true,true,true,0);
+//		
+//		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 9, 3,new ArrayList<String>()  ,5, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
+//		   
 		
-		Pet pet1 = new Pet((long)1, "golden retriver", "dog", 12, 400, 9, 3,new ArrayList<String>()  ,5, 4, PlaceForLiving.INSIDE_OUTSIDE,3, true,3,true, 3,3, 1);
-		   
-		//todo lista stringova !!!!!!!!!!
 		Helper h = new Helper();
-//		ksession.insert( new ForbiddenPet("ForbiddenPets", "AlergicOn") );
+//		ksession.insert( new ForbiddenPet("ForbiddenPets", "AlergicOn") ); OSTAVIIIIIIIII OVOOOOO
 //		ksession.insert( new ForbiddenPet("ForbiddenPets", "AfraidOf") );
 //		
 //		for(String s : f.getAfraidOf()) {
@@ -191,6 +185,10 @@ public class PetService {
 //		for(String s : f.getAlergicOn()) {
 //			ksession.insert( new ForbiddenPet("AlergicOn", s) );
 //		}
+		Family f = new Family(dto);
+    	Optional<Pet> pet1 = this.petRepository.findById(id);
+    	this.parseList(pet1.get());
+    	
 		ksession.insert( new Location("ForbiddenPets", "AlergicOn") );
 		ksession.insert( new Location("ForbiddenPets", "AfraidOf") );
 		
@@ -221,13 +219,14 @@ public class PetService {
         Pet pet = (Pet) ksession.getGlobal("perfectPetForChildren");
         String exist = (String) ksession.getGlobal("petExist");
 		System.out.println(h.getText());
-		System.out.println(pet);
+		System.out.println(pet1.get().getAdoptableOnKids());
+		System.out.println(f.getPersonalities()+"personal java");
 		if(exist!= null) {
 			if(exist.equals("pet is in list")) {
 				return null; //ako se nalazi u listi nije ok, i vrati se (ali ovo list je zapravo ono stablo)
 			}
 		}
-		return pet;
+		return pet1.get();
 
     }
 

@@ -6,6 +6,7 @@ import { FormServiceService } from '../../services/form-service/form-service.ser
 import { FinishingDialogComponent } from '../../components/finishing-dialog/finishing-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Pet } from '../../../shared/models/pet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -18,6 +19,7 @@ export class UserDashboardComponent implements OnInit {
   famillyInfo: Family;
   singlePersonInfo: SinglePerson;
   constructor(
+    public router: Router,
     private formService: FormServiceService,
     public dialog: MatDialog
   ) {}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import sbnz.integracija.example.dto.UserLoginDTO;
 import sbnz.integracija.example.dto.UserRegisterDTO;
 import sbnz.integracija.example.model.Pet;
 
@@ -29,5 +30,11 @@ public class UserController {
     public ResponseEntity<UserRegisterDTO> register(@RequestBody UserRegisterDTO dto) {
 		System.out.println(dto.getEmail());
         return new ResponseEntity<>(this.userService.register(dto), HttpStatus.OK);
+    }
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<UserLoginDTO> login(@RequestBody UserLoginDTO dto) {
+		
+        return new ResponseEntity<>(this.userService.login(dto), HttpStatus.OK);
     }
 }

@@ -1,3 +1,16 @@
 .newDiv{
   color: #424242;
 }
+button{
+  background-color: #69f0ae;
+  margin-right: 5px;
+}
+.side-icon {
+  width: 30px;
+  height: 30px;
+
+  background-size: cover;
+  background-position: top center;
+  border-radius: 95%;
+  padding: 3px;
+}
